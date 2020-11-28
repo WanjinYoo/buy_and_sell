@@ -26,7 +26,7 @@ INSERT INTO user_favourites (user_id, item_id) VALUES
 (2,1),
 (4,2);
 --
-INSERT INTO messages (from_id, to_id, item_id,message, message_date) 
+INSERT INTO conversations (from_id, to_id, item_id,message, message_date) 
 VALUES (3, 2, 1, 'can you bring down the price?','2018-09-26'),
 (2, 3, 1, 'The item is reasonably priced. What are you offerring?','2018-09-27'),
 (1, 2, 1, '145','2018-09-27'),

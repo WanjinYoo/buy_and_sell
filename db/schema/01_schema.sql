@@ -38,26 +38,26 @@ CREATE TABLE items (
   condition VARCHAR(255) DEFAULT 'New',
   number_of_likes INTEGER DEFAULT 0,
   sold BOOLEAN DEFAULT 'N',
-  sold_to INTEGER,
+  sold_to INTEGER REFERENCES user(id),
   sold_date DATE,
   deleted BOOLEAN DEFAULT 'N',
   deleted_reason VARCHAR(255) DEFAULT NULL
 );
-
 -- 
+ 
 CREATE TABLE user_favourites (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   item_id INTEGER REFERENCES items(id) ON DELETE CASCADE
 );
 -- 
-CREATE TABLE messages (
+CREATE TABLE conversations (
   id SERIAL PRIMARY KEY NOT NULL,
   from_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   to_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   item_id INTEGER REFERENCES items(id) ON DELETE CASCADE,
   message TEXT NOT NULL,
-  message_date DATE NOT NULL
+  message_date TIMESTAMP NOT NULL DEFAULT NOW()
 );
 
 -- 
