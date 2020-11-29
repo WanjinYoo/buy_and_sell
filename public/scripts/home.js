@@ -1,11 +1,10 @@
 $(() => {
   $.ajax({
     type: `GET`,
-    dataType: 'json',
-    url: `api/users/`,
+    url: `api/users/login`,
   })
+
     .then((data) => {
-      const contents = JSON.stringify(data);
-      $('#contents').text(contents);
+      $('#loginID').text('Hello\t' + data[`name`]);
     });
 });
