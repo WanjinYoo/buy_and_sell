@@ -9,9 +9,10 @@ const express = require('express');
 const router  = express.Router();
 const helpers = require('../db/helper/conversations.js');
 
-module.exports = (db) => {
+module.exports = function(db) {
   router.get("/", (req, res) => {
-    helpers.getAllConversationsByUser(db)
+    const userId = req.session[`uesrid`];
+    helpers.getAllConversationsByUser(db, userId)
     // db.query(`SELECT * FROM conversations;`)
       .then(data => {
         const conversations = data.rows;
