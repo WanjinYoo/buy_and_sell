@@ -41,21 +41,37 @@ INSERT INTO user_favourites (user_id, item_id) VALUES
 (4,6);
 
 --
-INSERT INTO conversations (from_id, to_id, item_id,message, message_date) 
-VALUES (2, 1, 1, 'can you bring down the price?','2018-09-26'),
-(1, 2, 1, 'The item is reasonably priced. What are you offerring?','2018-09-27'),
-(2, 1, 1, '145','2018-09-27'),
-(1, 2, 1, 'Sold!','2018-09-28'),
-(2, 1, 1, 'Thank you','2018-09-26'),
-(3, 3, 3, 'Is this available?','2018-09-26'),
-(1, 3, 3, 'Yes. What are you offerring?','2018-09-27'),
-(3, 1, 3, '145','2018-09-27'),
-(1, 3, 3, 'Sold!','2018-09-28'),
-(3, 1, 3, 'Thank you','2018-09-26'),
-(2, 1, 5, 'is this available','2018-09-26'),
-(1, 2, 5, 'yes. What are you offerring?','2018-09-27'),
-(3, 1, 5, 'is this available','2018-09-26'),
-(1, 3, 5, 'yes. someone else is also looking?','2018-09-27'),
-(2, 1, 5, '145','2018-09-27'),
-(1, 2, 5, 'Sold!','2018-09-28'),
-(2, 1, 5, 'Thank you','2018-09-26');
+INSERT INTO conversations (from_id, buyer_id, item_id, message, message_date) 
+VALUES (2, 2, 1, 'can you bring down the price?',Now());
+INSERT INTO conversations (from_id, buyer_id, item_id, message, message_date) 
+VALUES (1, 2, 1, 'The item is reasonably priced. What are you offerring?', Now());
+INSERT INTO conversations (from_id, buyer_id, item_id, message, message_date) 
+VALUES (2, 2, 1, '145', Now());
+INSERT INTO conversations (from_id, buyer_id, item_id, message, message_date) 
+VALUES (1, 2, 1, 'Sold!', Now());
+INSERT INTO conversations (from_id, buyer_id, item_id, message, message_date) 
+VALUES (2, 2, 1, 'Thank you', Now());
+INSERT INTO conversations (from_id, buyer_id, item_id, message, message_date) 
+VALUES (3, 3, 3, 'Is this available?', Now());
+INSERT INTO conversations (from_id, buyer_id, item_id, message, message_date) 
+VALUES (1, 3, 3, 'Yes. What are you offerring?', Now());
+INSERT INTO conversations (from_id, buyer_id, item_id, message, message_date) 
+VALUES (3, 2, 3, '145', Now());
+INSERT INTO conversations (from_id, buyer_id, item_id, message, message_date) 
+VALUES (1, 2, 3, 'Sold!', Now());
+INSERT INTO conversations (from_id, buyer_id, item_id, message, message_date) 
+VALUES (3, 2, 3, 'Thank you', Now());
+INSERT INTO conversations (from_id, buyer_id, item_id, message, message_date) 
+VALUES (2, 2, 5, 'is this available', Now());
+INSERT INTO conversations (from_id, buyer_id, item_id, message, message_date) 
+VALUES (1, 2, 5, 'yes. What are you offerring?', Now());
+INSERT INTO conversations (from_id, buyer_id, item_id, message, message_date) 
+VALUES (3, 3, 5, 'is this available', Now());
+INSERT INTO conversations (from_id, buyer_id, item_id, message, message_date) 
+VALUES (1, 3, 5, 'yes. someone else is also looking?', Now());
+INSERT INTO conversations (from_id, buyer_id, item_id, message, message_date) 
+VALUES (2, 2, 5, '145', Now());
+INSERT INTO conversations (from_id, buyer_id, item_id, message, message_date) 
+VALUES (1, 2, 5, 'Sold!', Now());
+INSERT INTO conversations (from_id, buyer_id, item_id, message, message_date) 
+VALUES (2, 2, 5, 'Thank you', Now());

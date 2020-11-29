@@ -7,7 +7,7 @@
 -- -----------------------------------------------------
 -- CREATE DATABASE IF NOT EXISTS midterm DEFAULT CHARACTER SET utf8;
 -- 
-
+\c midterm
 -- 
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS items CASCADE;
@@ -47,10 +47,12 @@ CREATE TABLE user_favourites (
 CREATE TABLE conversations (
   id SERIAL PRIMARY KEY NOT NULL,
   from_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  to_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  buyer_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   item_id INTEGER REFERENCES items(id) ON DELETE CASCADE,
   message TEXT NOT NULL,
   message_date TIMESTAMP NOT NULL DEFAULT NOW()
 );
 
+GRANT ALL PRIVILEGES ON DATABASE midterm TO labber;
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO labber;
 -- 

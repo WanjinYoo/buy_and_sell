@@ -1,5 +1,4 @@
 $(() => {
-
   $.ajax({
     type: `GET`,
     dataType: 'json',
@@ -9,12 +8,4 @@ $(() => {
       const contents = JSON.stringify(data);
       $('#contents').text(contents);
     });
-
-
-
-
-
-
-
-
 });
