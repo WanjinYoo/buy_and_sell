@@ -10,5 +10,4 @@ $(() => {
         $('#contents').text(contents);
       });
   });
-
 });

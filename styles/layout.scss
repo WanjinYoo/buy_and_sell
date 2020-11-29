@@ -6,4 +6,35 @@ body {
   h1 {
     color: #244751;
   }
+  .item-border {
+    margin: 5% 10%;
+    border: 1px solid black;
+  }
+  .inner-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .inner-content img {
+    margin: 2%;
+  }
+  .right{
+    margin: 2% 4%;
+  }
+  .middle {
+    margin: 2% 4%;
+  }
+  .middle h6 {
+    font-size: 20px;
+    color: #37337C;
+  }
+  .description {
+    display: flex;
+    justify-content: center;
+    margin-top: 4%;
+    margin-bottom: 1%;
+  }
+  .description h6 {
+    font-size: 20px;
+  }
 }

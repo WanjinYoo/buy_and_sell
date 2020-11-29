@@ -35,16 +35,22 @@ app.use(express.static("public"));
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const usersRoutes = require("./routes/users");
+const itemsRoutes = require("./routes/items");
 const conversationsRoutes = require("./routes/conversations");
 const widgetsRoutes = require("./routes/widgets");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
+app.use("/api/items", itemsRoutes(db));
 app.use("/api/conversations", conversationsRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
+
+
+
+// /api/page is the json that we show on the "/" homepage
 
 // Home page
 // Warning: avoid creating more routes in this file!

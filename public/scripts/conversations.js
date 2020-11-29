@@ -1,5 +1,5 @@
 $(() => {
-  
+
   $.ajax({
     type: `GET`,
     dataType: 'json',

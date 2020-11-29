@@ -15,10 +15,10 @@
   <!-- Local Js Files -->
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/public/scripts/myFavorites.js"></script>
+  <script type="text/javascript" src="/public/scripts/items.js"></script>
   <script type="text/javascript" src="/public/scripts/conversations.js"></script>
   <script type="text/javascript" src="/public/scripts/home.js"></script>
 </head>
-
 <!-- bootstrap Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-secondary">
   <a class="navbar-brand" href="#">BuyAndSell</a>
@@ -35,7 +35,7 @@
         <a class="nav-link" id="MyFavorites" href="#">Myfavorites</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link Items" href="#">Items</a>
+        <a class="nav-link Items" id="items" href="#">Items</a>
       </li>
       <li class="nav-item">
         <a class="nav-link Conversations" id="conversations" href="#">Conversations</a>
@@ -43,17 +43,19 @@
     </ul>
   </div>
 </nav>
-
 <!-- Retrieve all the items in our database -->
 <div id="contents" class="container">
 </div>
 
 
+<!-- Title, description, price, datelisted, img -->
+<body class='body'>
+  <article class="main-container">
+    <section class='container-section'>
 
-<body>
 
-
-
+    </section>
+  </article>
 </body>
 
 </html>
