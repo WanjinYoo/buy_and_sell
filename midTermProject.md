@@ -61,9 +61,7 @@ Entities - TABLES
    2. title
    3. description
    4. thumbnail_photo_url
-   5. seller_id References user(id)
    6. date_listed
-   7. condition
    8. price
    9. number_of_likes (count(item_id) from user_favs)
    10. Sold? Y/N
@@ -80,8 +78,6 @@ Entities - TABLES
    19. message
 
 stretch:
-1. Add a country, province, city table which can be used as a drop down while creating the user.
-
 # - UI - Flow
 
 Types of Users - Admin(seller) / User (Buyer)
