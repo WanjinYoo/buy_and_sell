@@ -8,15 +8,16 @@ const initQueryVars = (queryString, queryParams) => {
   queryParams = [];
 };
 
-const getAllConversationsByUser = (db) => {
+const getAllConversationsByUser = (db, userId) => {
   initQueryVars(queryString, queryParams);
-  queryParams = [2];
+  queryParams = [userId];
   queryString = `
-  SELECT items.title as item ,users.name as from, message from 
-  conversations c join users on users.id=from_id
-  join items on item_id=items.id
-  where buyer_id = $1
-  order by message_date;`;
+  SELECT items.title AS item ,users.name AS from, message , message_date AS date
+  FROM conversations 
+  JOIN users on users.id=from_id
+  JOIN items on item_id=items.id
+  WHERE buyer_id = $1
+  ORDER BY date;`;
 
   return db.query(queryString, queryParams);
 };

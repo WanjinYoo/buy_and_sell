@@ -11,8 +11,8 @@ const helpers = require('../db/helper/conversations.js');
 
 module.exports = function(db) {
   router.get("/", (req, res) => {
-    // const userId = req.session.userId;
-    helpers.getAllConversationsByUser(db)
+    const userId = req.session[`uesrid`];
+    helpers.getAllConversationsByUser(db, userId)
     // db.query(`SELECT * FROM conversations;`)
       .then(data => {
         const conversations = data.rows;
