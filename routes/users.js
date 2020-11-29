@@ -35,5 +35,25 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
+
+  router.get("/login/:id", (req, res) => {
+    req.session[`uesrid`] = req.params.id;
+    res.redirect('/');
+  });
+
+  router.get("/logout", (req, res) => {
+    req.session[`uesrid`] = null;
+    res.redirect('/');
+  });
+  router.get("/login", (req, res) => {
+    db.query(`SELECT name
+    FROM users
+    Where id = ${req.session[`uesrid`]};`)
+      .then(data => {
+        const usersname = data.rows[0];
+        res.send(usersname);
+      });
+  });
+
   return router;
 };

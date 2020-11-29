@@ -14,10 +14,10 @@
 
   <!-- Local Js Files -->
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/public/scripts/home.js"></script>
   <script type="text/javascript" src="/public/scripts/myFavorites.js"></script>
   <script type="text/javascript" src="/public/scripts/items.js"></script>
   <script type="text/javascript" src="/public/scripts/conversations.js"></script>
-  <script type="text/javascript" src="/public/scripts/home.js"></script>
 </head>
 <!-- bootstrap Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-secondary">
@@ -41,7 +41,8 @@
         <a class="nav-link Conversations" id="conversations" href="#">Conversations</a>
       </li>
     </ul>
-  </div>
+    <div class="ml-auto" id="loginID">
+    </div>
 </nav>
 <!-- Retrieve all the items in our database -->
 <div id="contents" class="container">
