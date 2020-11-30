@@ -14,7 +14,6 @@ const assembleMessageGroups = (rows) => {
   let messages;
   let itemId;
   for (const row of rows) {
-    console.log(row);
     if (itemId !== row.id) {
       itemId = row.id;
       if (messages) {

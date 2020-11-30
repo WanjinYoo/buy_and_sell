@@ -23,6 +23,11 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+    <!-- Moment.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"
+    integrity="sha512-rmZcZsyhe0/MAjquhTgiUcb4d9knaFc7b5xAfju483gbEXTkeJRUMIPk6s3ySZMYUHEcjKbjLjyddGWMrNEvZg=="
+    crossorigin="anonymous"></script>
+
   <!-- Local Js Files -->
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/public/scripts/home.js"></script>
@@ -39,11 +44,12 @@
   <div class='conversations'>
     <div class="item-id">
       <% for(const group of groups) { %>
+      </br>
       <p class='item-name'><%= group[0].item%></p>
       <div id=<%=group[0].id%>class="messages">
         <% for(const message of group) { %>
         <div class='messageLine'>
-          <span><%=message.date%></span><span><%=message.from%></span><span><%=message.message%>></span></div>
+          <span><%= moment(message.date).format('Do MMM, YYYY')%> </span><span><%=message.from%> </span><span><%=message.message%>></span></div>
         <%}%>
       <%}%>
       </div>
@@ -53,3 +59,4 @@
 </body>
 
 </html>
+moment(yourDateVariable).format('Do MMMM, YYYY')
