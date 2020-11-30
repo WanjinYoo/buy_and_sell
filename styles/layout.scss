@@ -42,4 +42,55 @@ body {
       height: 15rem;
     }
   }
+  .message-box{
+    margin: 1rem;
+    border: 1px solid black;
+  }
+  .message-line {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .date-from{
+    display:flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+  }
+  .message{
+    margin-left: 2em;
+    text-align: left;
+    // border: 1px solid black;
+  }
+  .create-message-container {
+    width: 90%;
+    // margin: auto;
+    // float: top;
+  }
+  .new-message {
+    box-sizing: border-box;
+    border: 1px solid black;
+    margin: 2rem;
+  }
+  .textareaContainer {
+    display: block;
+    // border: 3px solid #38c;
+    padding: 10px;
+    }
+  .textarea {
+    background-color: #f4f1ec;
+    border-bottom: 5px solid;
+    width: 100%;
+    outline: none;
+  }  
+  .box-button{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }  
+  .message-button {
+    background-color: #4056A1;
+    // font-family: 'Bungee', cursive;
+    color: #FFFFFF;
+  }
 }

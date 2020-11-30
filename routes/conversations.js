@@ -34,7 +34,6 @@ module.exports = function(db) {
       .then(data => {
         const isAdmin = data.rows[0].is_admin;
         const userName = data.rows[0].name;
-        console.log(userName, isAdmin, '+++++++++++++++++');
         helpers.getAllConversationsByUser(db, userId, isAdmin)
           .then(data => {
             const messages = data.rows;

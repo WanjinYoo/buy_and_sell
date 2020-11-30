@@ -6,7 +6,6 @@ let queryParams = [];
 const initQueryVars = (queryString, queryParams) => {
   queryString = '';
   queryParams = [];
-  console.log(queryParams, 'query params INIT=-=-=-=-=-==-');
 };
 
 const checkAdmin = (db, userId) => {
@@ -27,16 +26,30 @@ const getAllConversationsByUser = (db, userId, isAdmin) => {
   if (!isAdmin) {
     queryString += `WHERE sold = 'false'
     AND buyer_id = $1 
-    ORDER BY message_date;`;
+    ORDER BY item_id, message_date;`;
     return db.query(queryString, queryParams);
   } else {
     queryString += `WHERE sold = 'false'
-    ORDER BY message_date;`;
+    ORDER BY item_id, message_date;`;
     return db.query(queryString);
   }
+};
+
+const addMsgFromBuyer = (db, messageObject) => {
+  initQueryVars(queryString, queryParams);
+  // console.log(messageObject, 'MESSAGE OBJECT TO WRITE...');
+  queryParams = [
+    messageObject.userId,
+    messageObject.itemId,
+    messageObject.message
+  ];
+  queryString = `INSERT INTO conversations (from_id, buyer_id, item_id, message)
+  VALUES ($1, $1, $2, $3) RETURNING *;`;
+  return db.query(queryString, queryParams);
 };
 
 module.exports = {
   getAllConversationsByUser,
   checkAdmin,
+  addMsgFromBuyer,
 };

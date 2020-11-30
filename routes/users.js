@@ -48,7 +48,6 @@ module.exports = (db) => {
         console.log(req.session, "=-=-=-=-]-==-=-=-");
         // res.send(username);
       });
-
     res.redirect('/api/items');
   });
 
@@ -57,6 +56,7 @@ module.exports = (db) => {
     req.session[`userid`] = null;
     res.redirect('/');
   });
+  
   router.get("/login", (req, res) => {
     db.query(`SELECT name
     FROM users
