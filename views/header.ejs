@@ -22,7 +22,12 @@
       </li>
     </ul>
     <div class="ml-auto" id="loginID">
+      <% if(username) { %>
       <%= username %>
+      <% } else { %>
+      <p class="mb-0">Please Login</p>
+      <% } %>
+
     </div>
 </nav>
 </header>

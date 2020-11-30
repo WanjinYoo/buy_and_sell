@@ -18,7 +18,7 @@ module.exports = (db) => {
               items,
               username: req.session['username']
             }
-            res.render('items', templateVars)
+            res.render('items', templateVars);
           })
           .catch(err => {
             res
