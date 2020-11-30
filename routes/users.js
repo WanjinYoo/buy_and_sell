@@ -38,7 +38,18 @@ module.exports = (db) => {
 
   router.get("/login/:id", (req, res) => {
     req.session[`uesrid`] = req.params.id;
-    res.redirect('/');
+
+    db.query(`SELECT name
+    FROM users
+    Where id = ${req.session[`uesrid`]};`)
+      .then(data => {
+        const usersname = data.rows[0];
+        req.session["username"] = usersname.name;
+        console.log(req.session, "=-=-=-=-]-==-=-=-");
+        // res.send(username);
+      });
+
+    res.redirect('/api/items');
   });
 
   router.get("/logout", (req, res) => {
@@ -50,8 +61,9 @@ module.exports = (db) => {
     FROM users
     Where id = ${req.session[`uesrid`]};`)
       .then(data => {
-        const usersname = data.rows[0];
-        res.send(usersname);
+        // const usersname = data.rows[0];
+        // req.session["username"] = username;
+        // res.send(usersname);
       });
   });
 
