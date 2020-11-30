@@ -4,24 +4,25 @@ $(() => {
     const date = message.date;
     const from = message.from;
     const body = message.message;
-    const $messagesDiv = $('<div>').attr('class', 'messages');
+    const $messageLine = $('<div>').attr('class', 'messageLIne');
     const $messageDate = $('<span>').attr('class', 'message-date').attr('type', 'date').text(`${date}`);
     const $messageFrom = $('<span>').attr('class', 'message-from').text(`${from}`);
     const $messageBody = $('<span>').attr('class', 'message-body').text(`${body}`);
-    $messagesDiv.append($messageDate, $messageFrom, $messageBody);
-    $(".conversations").append($messagesDiv);
+    $messageLine.append($messageDate, $messageFrom, $messageBody);
+    $(".messages").append($messageLine);
   };
            
   const displayItemName = (item) => {
     const $conversations = $('<div>').attr('class', 'conversations');
     const $itemDiv =  $('<div>').attr('class', 'item-id');
     const $itemName =  $('<p>').attr('class', 'item-name').text(`${item}`);
-    $('.container-section').append($conversations, $itemDiv, $itemName);
+    const $messagesDiv = $('<div>').attr('class', 'messages');
+    $('.container-section').append($conversations, $itemDiv, $itemName, $messagesDiv);
   };
-  
-  const renderConversations = (data) => {
+
+  const renderConversations = (messages) => {
     let currItem = '';
-    for (const message of data.conversations) {
+    for (const message of messages) {
       if (currItem !== message.item) {
         currItem = message.item;
         console.log(currItem);
