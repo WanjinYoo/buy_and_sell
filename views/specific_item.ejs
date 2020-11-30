@@ -8,7 +8,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Conversations TEMP</title>
+  <title><%= items[0].title %></title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="">
@@ -36,48 +36,21 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
   <%- include('header') %>
-
-  <h3>SortBy</h3>
-
-  <a href="?sort=price">price</a>
-
-  <% for (const elem of items) {%>
-    <div class="item-border">
-      <div class="inner-content">
-        <div class="middle">
-          <a href='/api/items/<%=elem.id%>'
-            <h6><%=elem.title%></h6>
-          </a>
-        </div>
-        <div class="right">
-          <h6><%= elem.date_listed%></h6>
-          <h6>Price: $<%= elem.price %></h6>
-          <h6>Likes: <%= elem.number_of_likes %></h6>
-        </div>
-        <img class=<%=elem.id%> style="width: 15%;" src=<%=elem.thumbnail_photo_url%> alt="">
-      </div>
-      <div class="description">
-        <h6><%= elem.description %></h6>
-      </div>
-    </div>
-  <%}%>
+  <h1><%= items[0].title %></h1>
+  <h1>Price: $<%= items[0].price %></h1>
+  <img style="width: 15%;" src="<%= items[0].thumbnail_photo_url %>" alt="">
+  <h1>Description</h1>
+  <h1><%= items[0].description %></h1>
+  <h1>Likes: <%= items[0].number_of_likes %></h1>
+  <a href="">
+    <h1>Contact Seller</h1>
+  </a>
 
 
-
-  <script src="" async defer></script>
-
-  <script>
-    let test = false;
-    $(document).ready(function(){
-        $('.sortByPrice').click(() => {
-    test = true
-    console.log('clicked');
-    if (test) {
-      alert("HELLLsadasdOS")
-    }
-  // });
-      });
-    });
-  </script>
 </body>
 </html>
+
+
+
+
+<!-- [{"id":1,"title":"iPhone 6","description":"Awesome iPhone 6, works fine","thumbnail_photo_url":"https://images.pexels.com/photos/2086676/pexels-photo-2086676.jpeg?auto=compress&amp;cs=tinysrgb&amp;h=350","date_listed":"2018-09-26T00:00:00.000Z","price":150,"number_of_likes":0,"sold":false,"sold_to":null,"sold_date":null,"deleted":false,"deleted_reason":null}] -->

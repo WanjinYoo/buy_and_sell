@@ -53,8 +53,7 @@ module.exports = (db) => {
   });
 
   router.get("/logout", (req, res) => {
-    req.session[`username`] = null;
-    req.session[`userid`] = null;
+    req.session[`uesrid`] = null;
     res.redirect('/');
   });
   router.get("/login", (req, res) => {
