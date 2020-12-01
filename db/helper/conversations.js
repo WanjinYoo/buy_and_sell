@@ -8,31 +8,25 @@ const initQueryVars = (queryString, queryParams) => {
   queryParams = [];
 };
 
-// const checkAdmin = (db, userId) => {
-//   initQueryVars(queryString, queryParams);
-//   queryParams = [userId];
-//   queryString = `SELECT name, is_admin FROM users where id = $1;`;
-//   return db.query(queryString, queryParams);
-// };
-
 const getAllConversationsByUser = (db, userId, isAdmin) => {
   initQueryVars(queryString, queryParams);
-  queryParams = [userId];
   queryString = `
-  SELECT items.id, buyer_id, items.title AS item ,users.name AS from, message, message_date AS date
-  FROM conversations 
-  JOIN users on users.id=from_id
-  JOIN items on item_id=items.id `;
+  SELECT a.from_id, b.name AS from_name, a.buyer_id, c.name AS buyer_name, a.item_id, d.title AS item_name, a.message_date AS message_date, a.message AS message_text
+  FROM conversations a
+  JOIN users b ON b.id = a.from_id
+  JOIN users c ON c.id = a.buyer_id
+  JOIN items d ON d.id = a.item_id
+  WHERE d.sold = 'false'
+  AND d.deleted = 'false'
+  `;
   if (!isAdmin) {
-    queryString += `WHERE sold = 'false'
-    AND buyer_id = $1 
-    ORDER BY item_id, message_date;`;
-    return db.query(queryString, queryParams);
+    queryParams = [userId];
+    queryString += `AND a.buyer_id = $1 `;
   } else {
-    queryString += `WHERE sold = 'false'
-    ORDER BY item_id, message_date;`;
-    return db.query(queryString);
+    queryParams = [];
   }
+  queryString += `ORDER BY a.item_id, a.message_date;`;
+  return db.query(queryString, queryParams);
 };
 
 const addMsgFromBuyer = (db, messageObject) => {

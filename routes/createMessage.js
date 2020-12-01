@@ -11,17 +11,17 @@ const helpers = require('../db/helper/conversations.js');
 const userHelpers = require('../db/helper/users.js');
 
 module.exports = function(db) {
-  router.get("/:id", (req, res) => {
-    const userId = req.session[`userId`];
-    const itemId = req.params.id;
-    userHelpers.getUserById(db, userId)
-      .then(data => {
-        // const isAdmin = data.rows[0].is_admin;
-        const userName = data.rows[0].name;
-        const templateVars = {userId, itemId, userName};
-        res.render('createMessage', templateVars);
-      });
-  });
+  // router.get("/:id", (req, res) => {
+  //   const userId = req.session[`userId`];
+  //   const itemId = req.params.id;
+  //   userHelpers.getUserById(db, userId)
+  //     .then(data => {
+  //       // const isAdmin = data.rows[0].is_admin;
+  //       const userName = data.rows[0].name;
+  //       const templateVars = {userId, itemId, userName};
+  //       res.render('createMessage', templateVars);
+  //     });
+  // });
 
   router.post('/:itemId/:userId/:buyerId', (req, res) => {
     // console.log('back from the form...+++++++++++++++++++');
@@ -44,7 +44,7 @@ module.exports = function(db) {
             // const isAdmin = data.rows[0].is_admin;
               const userName = data.rows[0].name;
               const templateVars = {userName};
-              res.redirect('/');
+              res.redirect('/api/conversations');
             })
             .catch(e => {
               console.error(e);

@@ -15,8 +15,8 @@ const assembleMessageGroups = (rows) => {
   let messages;
   let itemId;
   for (const row of rows) {
-    if (itemId !== row.id) {
-      itemId = row.id;
+    if (itemId !== row.item_id) {
+      itemId = row.item_id;
       if (messages) {
         results.push(messages);
       }
@@ -39,7 +39,7 @@ module.exports = function(db) {
           .then(data => {
             const messages = data.rows;
             const messageGroups = assembleMessageGroups(messages);
-            const templateVars = {groups: messageGroups, userName: userName, userId};
+            const templateVars = {groups: messageGroups, userName: userName, userId, isAdmin};
             res.render('conversations', templateVars);
           })
           .catch(err => {

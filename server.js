@@ -25,6 +25,26 @@ app.use((req, res, next)=>{
   next();
 });
 
+moment.updateLocale('en', {
+  relativeTime: {
+    future : 'in %s',
+    past   : '%s ago',
+    s  : function(number, withoutSuffix) {
+      return withoutSuffix ? 'now' : 'a few seconds';
+    },
+    m  : '1m   ',
+    mm : '%dm  ',
+    h  : '1h   ',
+    hh : '%dh  ',
+    d  : '1d   ',
+    dd : '%dd  ',
+    M  : '1mth ',
+    MM : '%dmth',
+    y  : '1y   ',
+    yy : '%dy  '
+  }
+});
+
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.

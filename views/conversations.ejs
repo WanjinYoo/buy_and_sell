@@ -45,32 +45,36 @@
       <% for(const group of groups) { %>
       </br>
       <div class='message-box'>
-        <p class='item-name bg-secondary'><strong><%= group[0].item%>&nbsp-&nbsp<%=group[0].id%></strong></p>
+        <p class='item-name bg-secondary'><strong><%= group[0].item_name%>&nbsp-&nbsp<%=group[0].item_id%></strong></p>
         <div id='<%=group[0].id%>' class="messages">
           <% for(const message of group) { %>
           <div class='message-line'>
             <div class='date-from'>
-              <div class='msg-date'><%= moment(message.date).startOf('hour').fromNow()%>&nbsp-&nbsp&nbsp</div>
-              <div class='msg-from'> <%= message.from%>: </div>
+              <div class='msg-date'><%= moment(message.message_date).startOf('hour').fromNow()%>&nbsp-&nbsp&nbsp</div>
+              <div class='msg-from'> <%= message.from_name%> - </div>
             </div>
             <div class='message'>
-              <span><%=message.message%></span>
+              <span><%=message.message_text%></span>
             </div>
           </div>
           <%}%>
         </div>
-        <form class="message-form" action="/api/createMessage/<%=group[0].id%>/<%=userId%>/<%= group[0].buyer_id%>", method="POST">
-          <label class='textareaContainer' for="message-text">Your message?</label>
+        <form class="message-form" action="/api/createMessage/<%=group[0].item_id%>/<%=userId%>/<%= group[0].buyer_id%>", method="POST">
+          <% if(isAdmin) {%>
+          <label class='textareaContainer' for="message-text"><strong>Message&nbsp-&nbsp<%= group[0].buyer_name%></strong></label>
+          <% } else { %>
+          <label class='textareaContainer' for="message-text">Message seller -</label>
+          <% } %>
           <textarea class='textarea' name="text" id="message-text"></textarea>
           <div class="box-button">
             <div>
               <button class="message-button" type="submit">Submit</button>
             </div>
           </div>
-        </form>
+          </form>
 
-      </div>
-      <%}%>
+        </div>
+        <%}%>
         </div>
       </div>
       <script src="" async defer></script>
