@@ -4,11 +4,13 @@ const router  = express.Router();
 module.exports = (db) => {
 
   router.get("/", (req, res) => {
-    console.log(req.session[`userId`]);
-    db.query(`select * from items join user_favourites on items.id = user_favourites.item_id where user_favourites.user_id = ${req.session[`userId`]};`)
+
+    db.query(`select * from items join user_favourites on items.id = user_favourites.item_id where user_favourites.user_id =
+    ${req.session[`userId`]};`)
       .then(data => {
+        console.log(req.session[`userId`]);
         const items = data.rows;
-        templateVars = {
+        const templateVars = {
           items,
           username: req.session['username']
         };
