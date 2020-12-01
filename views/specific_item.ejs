@@ -57,7 +57,7 @@
 <%} else {%>
 <%}%>
 
-  <form class="message-form" action="/api/createMessage/<%=items[0].id%>/<%= messageUrl.uesrid %>/<%= messageUrl.uesrid %>", method="POST">
+  <form class="message-form" action="/api/createMessage/<%=items[0].id%>/<%= messageUrl.userId %>/<%= messageUrl.userId %>", method="POST">
 
     <label class='textareaContainer' for="message-text">Your message?</label>
     <textarea class='textarea' name="text" id="message-text"></textarea>

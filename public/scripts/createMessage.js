@@ -2,7 +2,7 @@
 
 //   $(".message-button").click(event => {
 //     event.preventDefault();
-//     const userId = req.session[`uesrid`];
+//     const userId = req.session[`userId`];
 //     const message = $("#message-text").val();
 //     const date = Date.now();    
 //   });

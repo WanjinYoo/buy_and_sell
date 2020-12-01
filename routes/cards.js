@@ -28,7 +28,7 @@ module.exports = (db) => {
         console.log(time);
         templateVars = {
           cardItems,
-          username: req.session['username'],
+          userName: req.session['userName'],
           time
         };
         res.render('index', templateVars);

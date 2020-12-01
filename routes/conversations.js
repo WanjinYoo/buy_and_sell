@@ -29,7 +29,7 @@ const assembleMessageGroups = (rows) => {
 
 module.exports = function(db) {
   router.get("/", (req, res) => {
-    const userId = req.session[`uesrid`];
+    const userId = req.session[`userId`];
     helpers.checkAdmin(db, userId)
       .then(data => {
         const isAdmin = data.rows[0].is_admin;
@@ -38,7 +38,7 @@ module.exports = function(db) {
           .then(data => {
             const messages = data.rows;
             const messageGroups = assembleMessageGroups(messages);
-            const templateVars = {groups: messageGroups, username: userName, userId};
+            const templateVars = {groups: messageGroups, userName: userName, userId};
             res.render('conversations', templateVars);
           })
           .catch(err => {

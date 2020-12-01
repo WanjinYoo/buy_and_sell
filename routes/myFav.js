@@ -12,7 +12,7 @@ module.exports = (db) => {
         const items = data.rows;
         const templateVars = {
           items,
-          username: req.session['username']
+          userName: req.session['userName']
         };
         res.render('items', templateVars);
       })

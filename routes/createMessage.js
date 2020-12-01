@@ -12,13 +12,13 @@ const userHelpers = require('../db/helper/users.js');
 
 module.exports = function(db) {
   router.get("/:id", (req, res) => {
-    const userId = req.session[`uesrid`];
+    const userId = req.session[`userId`];
     const itemId = req.params.id;
     userHelpers.getUserById(db, userId)
       .then(data => {
         // const isAdmin = data.rows[0].is_admin;
-        const username = data.rows[0].name;
-        const templateVars = {userId, itemId, username};
+        const userName = data.rows[0].name;
+        const templateVars = {userId, itemId, userName};
         res.render('createMessage', templateVars);
       });
   });
@@ -38,12 +38,12 @@ module.exports = function(db) {
         .then((data) => {
           // console.log(data.rows[0]);
           Promise.resolve((data.rows[0]));
-          const userId = req.session[`uesrid`];
+          const userId = req.session[`userId`];
           userHelpers.getUserById(db, userId)
             .then(data => {
             // const isAdmin = data.rows[0].is_admin;
-              const username = data.rows[0].name;
-              const templateVars = {username};
+              const userName = data.rows[0].name;
+              const templateVars = {userName};
               res.redirect('/');
             })
             .catch(e => {

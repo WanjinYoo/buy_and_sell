@@ -22,21 +22,24 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
+
   router.get("/login/:id", (req, res) => {
     req.session[`userId`] = req.params.id;
-
+    console.log(req.session['userId'], '*********************');
     db.query(`SELECT name
     FROM users
     Where id = ${req.session[`userId`]};`)
       .then(data => {
-        const usersname = data.rows[0];
-        req.session["username"] = usersname.name;
+        const usersName = data.rows[0];
+        console.log(usersName, '++++++++++++++++++++++++');
+        req.session["userName"] = usersName.name;
       });
     res.redirect('/api/items');
   });
 
   router.get("/logout", (req, res) => {
     req.session[`userId`] = null;
+    req.session["userName"] = null;
     res.redirect('/');
   });
 

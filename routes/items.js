@@ -6,11 +6,11 @@ module.exports = (db) => {
   router.get("/", (req, res) => {
     db.query(`SELECT name
     FROM users
-    Where id = ${req.session[`uesrid`]};`)
+    Where id = ${req.session[`userId`]};`)
 
       .then(data => {
-        const usersname = data.rows[0];
-        req.session["username"] = usersname.name;
+        const usersName = data.rows[0];
+        req.session["userName"] = usersName.name;
         db.query(`SELECT * FROM items;`)
         // QUERY FOR THINGS THAT ARE ONLY NOT DELETED OR MARKED AS DELETED
           .then(data => {
@@ -22,13 +22,13 @@ module.exports = (db) => {
                 return a.price - b.price;
               });
             } else {
-              items = data.rows
+              items = data.rows;
             }
 
             templateVars = {
               items,
-              username: req.session['username']
-            }
+              userName: req.session['userName']
+            };
 
             res.render('items', templateVars);
           })
@@ -43,7 +43,7 @@ module.exports = (db) => {
 
   router.get("/:id", (req, res) => {
 
-    const userId = req.session[`uesrid`];
+    const userId = req.session[`userId`];
     helpers.checkAdmin(db, userId)
 
       .then(data => {
@@ -60,7 +60,7 @@ module.exports = (db) => {
             const items = data.rows
             templateVars = {
               items,
-              username: req.session['username'],
+              userName: req.session['userName'],
               messageUrl: req.session,
               admin: isAdmin
             }
