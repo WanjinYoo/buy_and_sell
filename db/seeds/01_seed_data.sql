@@ -16,14 +16,17 @@ VALUES  ('Rahul', 'rahul@shial.com', '1234567890'),
 --
 
 INSERT INTO items (title, description, thumbnail_photo_url, date_listed, price)
-VALUES ('iPhone 6','Awesome iPhone 6, works fine','https://images.pexels.com/photos/2086676/pexels-photo-2086676.jpeg?auto=compress&amp;cs=tinysrgb&amp;h=350','2018-09-26',150),
-('iPhone 8','Awesome iPhone 8, no scratches','https://images.pexels.com/photos/1475938/pexels-photo-1475938.jpeg?auto=compress&amp;cs=tinysrgb&amp;h=350','2018-09-26',140),
-('Google Pixel 2','Something google made other than chrome','https://images.pexels.com/photos/2121121/pexels-photo-2121121.jpeg?auto=compress&amp;cs=tinysrgb&amp;h=350','2018-09-26',250),
-('Asus MB','MotherBoard','https://images.pexels.com/photos/2121121/pexels-photo-2121121.jpeg?auto=compress&amp;cs=tinysrgb&amp;h=350','2018-09-26',450),
-('Intel i9-9800','Intel i-9 9th gen cpu','https://images.pexels.com/photos/2121121/pexels-photo-2121121.jpeg?auto=compress&amp;cs=tinysrgb&amp;h=350','2018-09-26',715),
-('AMD processor','AMD 9000 series','https://images.pexels.com/photos/2121121/pexels-photo-2121121.jpeg?auto=compress&amp;cs=tinysrgb&amp;h=350','2018-09-26',110),
-('Logitech 400','logitech keyboard','https://images.pexels.com/photos/2121121/pexels-photo-2121121.jpeg?auto=compress&amp;cs=tinysrgb&amp;h=350','2018-09-26',75),
-('MB 750','Logitech Mouse mb-750','https://images.pexels.com/photos/2121121/pexels-photo-2121121.jpeg?auto=compress&amp;cs=tinysrgb&amp;h=350','2018-09-26',50);
+VALUES ('iPhone 6','This phone is in excellent condition. Zero scratches (was all ways kept inside a life proof case), speakers work, microphones work. I upgraded to a new phone., works fine','https://images.pexels.com/photos/2086676/pexels-photo-2086676.jpeg?auto=compress&amp;cs=tinysrgb&amp;h=350','2018-09-26',150),
+('iPhone 8','The Phone comes with charger n box. Phone is in perfect condition n has no problem. I upgraded to iPhone 12 that’s the reason I’m selling it., no scratches','https://images.pexels.com/photos/1475938/pexels-photo-1475938.jpeg?auto=compress&amp;cs=tinysrgb&amp;h=350','2018-09-26',140),
+('Google Pixel 2','Pixel 2 Phone (2017) by Google, G011A 64GB 5" inch Smartphone (Just Black) Unlocked
+Google phones are fully unlocked, and near Mint Condition. Phone and USB charger.','https://images.pexels.com/photos/2121121/pexels-photo-2121121.jpeg?auto=compress&amp;cs=tinysrgb&amp;h=350','2018-09-26',250),
+('Asus MB','Powered by 2nd generation AMD Ryzen AM4 processors to maximize connectivity and speed with dual NVMe M.2, USB 3.1 Gen2, gigabit LAN and up to 64GB of DDR4 (3200 MHz)','https://images.pexels.com/photos/2121121/pexels-photo-2121121.jpeg?auto=compress&amp;cs=tinysrgb&amp;h=350','2018-09-26',450),
+('Intel i9-9800','Designed for content creators and freelancers, Intel Core X-series processors put the power & convenience of a full studio in your PC. Quickly and simultaneously record, edit, and render with up to 4.8GHz thanks to the updated Intel','https://images.pexels.com/photos/2121121/pexels-photo-2121121.jpeg?auto=compress&amp;cs=tinysrgb&amp;h=350','2018-09-26',715),
+('AMD processor','AMD RYZEN 7 3800X 8-Core 3.9 GHz (4.5 GHz Max Boost) Socket AM4 105W 100-100000025BOX Desktop Processor','https://images.pexels.com/photos/2121121/pexels-photo-2121121.jpeg?auto=compress&amp;cs=tinysrgb&amp;h=350','2018-09-26',110),
+('Logitech 400','Maintain ultra-durable strength while achieve a feather-light weight
+Braided cable is ultra-flexible and super lightweight
+G-Skates - 100% pure Virgin PTFE with rounded edge','https://images.pexels.com/photos/2121121/pexels-photo-2121121.jpeg?auto=compress&amp;cs=tinysrgb&amp;h=350','2018-09-26',75),
+('MB 750','HERO 16K Sensor: Our most advanced gaming sensor with 1:1 tracking, 400+ IPS, and 100 - 16,000 max dpi sensitivity - plus zero smoothing, filtering, or acceleration','https://images.pexels.com/photos/2121121/pexels-photo-2121121.jpeg?auto=compress&amp;cs=tinysrgb&amp;h=350','2018-09-26',50);
 
 --
 INSERT INTO user_favourites (user_id, item_id) VALUES

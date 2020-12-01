@@ -42,9 +42,42 @@
   <h1>Description</h1>
   <h1><%= items[0].description %></h1>
   <h1>Likes: <%= items[0].number_of_likes %></h1>
-  <a href="">
-    <h1>Contact Seller</h1>
-  </a>
+
+<% if (admin) {%>
+  <form action="/api/items/<%=items[0].id%>/delete", method="POST">
+    <button type="submit">
+      Delete
+    </button>
+  </form>
+  <form action="/api/items/<%=items[0].id%>/sold", method="POST">
+    <button type="submit">
+      Mark As Sold
+    </button>
+  </form>
+<%} else {%>
+<%}%>
+
+  <form class="message-form" action="/api/createMessage/<%=items[0].id%>/<%= messageUrl.uesrid %>/<%= messageUrl.uesrid %>", method="POST">
+
+    <label class='textareaContainer' for="message-text">Your message?</label>
+    <textarea class='textarea' name="text" id="message-text"></textarea>
+    <div class="box-button">
+      <div>
+        <button class="message-button" type="submit">Submit</button>
+      </div>
+    </div>
+  </form>
+
+
+
+
+
+
+
+
+
+
+
 
 
 </body>

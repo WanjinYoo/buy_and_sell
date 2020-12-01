@@ -45,8 +45,6 @@ module.exports = (db) => {
       .then(data => {
         const usersname = data.rows[0];
         req.session["username"] = usersname.name;
-        console.log(req.session, "=-=-=-=-]-==-=-=-");
-        // res.send(username);
       });
 
     res.redirect('/api/items');

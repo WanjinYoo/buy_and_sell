@@ -1,45 +1,61 @@
 // See: https://sass-lang.com/
 
 body {
-  background-color: #EEE;
+
 
   h1 {
     color: #244751;
   }
   .item-border {
-    margin: 5% 10%;
+    margin: 0 20%;
     border: 1px solid black;
+    background-color: #f4f4f2;
   }
-  .inner-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .inner-content img {
-    margin: 2%;
-  }
-  .right{
-    margin: 2% 4%;
+
+  .right {
   }
   .middle {
     margin: 2% 4%;
   }
   .middle h6 {
     font-size: 20px;
-    color: #37337C;
+    color: #37337c;
   }
-  .description {
+
+  .inner-content {
+    img {
+      margin: 1%;
+    }
+    h6 {
+      font-size: 30px;
+      text-align: center;
+    }
+    h5 {
+
+    }
+    a {
+      margin-left: 5%;
+      margin-right: 8%;
+    }
+
+  }
+
+  .inner-content {
     display: flex;
-    justify-content: center;
-    margin-top: 4%;
-    margin-bottom: 1%
+    align-items: center;
+    justify-content: space-evenly;
+    margin-bottom: 3%;
   }
-  .description h6 {
-    font-size: 20px;
+  .test {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
   }
+
   .card {
     img {
       height: 15rem;
     }
   }
+
 }

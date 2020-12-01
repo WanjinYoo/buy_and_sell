@@ -42,23 +42,31 @@
   <a href="?sort=price">price</a>
 
   <% for (const elem of items) {%>
+
+
+
     <div class="item-border">
-      <div class="inner-content">
-        <div class="middle">
-          <a href='/api/items/<%=elem.id%>'
-            <h6><%=elem.title%></h6>
-          </a>
-        </div>
-        <div class="right">
-          <h6><%= elem.date_listed%></h6>
-          <h6>Price: $<%= elem.price %></h6>
-          <h6>Likes: <%= elem.number_of_likes %></h6>
-        </div>
-        <img class=<%=elem.id%> style="width: 15%;" src=<%=elem.thumbnail_photo_url%> alt="">
-      </div>
-      <div class="description">
-        <h6><%= elem.description %></h6>
-      </div>
+
+          <div class="inner-content">
+            <img class=<%=elem.id%> style="width: 15%;" src=<%=elem.thumbnail_photo_url%> alt="">
+            <a href='/api/items/<%=elem.id%>'>
+              <h6><%=elem.title%></h6>
+            </a>
+                <h5 class="title"><%= elem.description.substring(0, 80) %> ... </h5>
+          </div>
+
+          <div class="test">
+
+
+            <h6><%= elem.date_listed%></h6>
+            <h6>Price: $<%= elem.price %></h6>
+            <h6>Likes: <%= elem.number_of_likes %></h6>
+          </div>
+
+
+
+
+
     </div>
   <%}%>
 
