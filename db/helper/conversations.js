@@ -40,11 +40,12 @@ const addMsgFromBuyer = (db, messageObject) => {
   // console.log(messageObject, 'MESSAGE OBJECT TO WRITE...');
   queryParams = [
     messageObject.userId,
+    messageObject.buyerId,
     messageObject.itemId,
     messageObject.message
   ];
   queryString = `INSERT INTO conversations (from_id, buyer_id, item_id, message)
-  VALUES ($1, $1, $2, $3) RETURNING *;`;
+  VALUES ($1, $2, $3, $4) RETURNING *;`;
   return db.query(queryString, queryParams);
 };
 

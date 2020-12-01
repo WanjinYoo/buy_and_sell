@@ -23,13 +23,14 @@ module.exports = function(db) {
       });
   });
 
-  router.post('/:itemId/:userId', (req, res) => {
+  router.post('/:itemId/:userId/:buyerId', (req, res) => {
     // console.log('back from the form...+++++++++++++++++++');
     // console.log(req.body, req.body.text.length, '++++++++++++++++++++++');
     // console.log(req.params, 'PARAMS.......');
     const messageObject = {
       userId: req.params.userId,
       itemId: req.params.itemId,
+      buyerId: req.params.buyerId,
       message: req.body.text
     };
     if (req.body.text.length !== 0) {

@@ -59,8 +59,8 @@
           </div>
           <%}%>
         </div>
-        <form class="message-form" action="/api/createMessage/<%=group[0].id%>/<%=userId%>", method="POST">
-          <label class='textareaContainer' for="message-text">Your message?</label>
+        <form class="message-form" action="/api/createMessage/<%=group[0].id%>/<%=userId%>/<%= group[0].buyer_id%>", method="POST">
+          <label class='textareaContainer' for="message-text">Your message?<%=group[0].id%>&nbsp<%= group[0].buyer_id%></label>
           <textarea class='textarea' name="text" id="message-text"></textarea>
           <div class="box-button">
             <div>
