@@ -25,7 +25,8 @@ Google phones are fully unlocked, and near Mint Condition. Phone and USB charger
 ('Logitech 400','Maintain ultra-durable strength while achieve a feather-light weight
 Braided cable is ultra-flexible and super lightweight
 G-Skates - 100% pure Virgin PTFE with rounded edge','https://images.pexels.com/photos/2121121/pexels-photo-2121121.jpeg?auto=compress&amp;cs=tinysrgb&amp;h=350','2018-09-26',75),
-('MB 750','HERO 16K Sensor: Our most advanced gaming sensor with 1:1 tracking, 400+ IPS, and 100 - 16,000 max dpi sensitivity - plus zero smoothing, filtering, or acceleration','https://images.pexels.com/photos/2121121/pexels-photo-2121121.jpeg?auto=compress&amp;cs=tinysrgb&amp;h=350','2018-09-26',50);
+('MB 750','HERO 16K Sensor: Our most advanced gaming sensor with 1:1 tracking, 400+ IPS, and 100 - 16,000 max dpi sensitivity - plus zero smoothing, filtering, or acceleration','https://images.pexels.com/photos/2121121/pexels-photo-2121121.jpeg?auto=compress&amp;cs=tinysrgb&amp;h=350','2018-09-26',50),
+('NEW ITEM','HERO 16K Sensor: Our most advanced gaming sensor with 1:1 tracking, 400+ IPS, and 100 - 16,000 max dpi sensitivity - plus zero smoothing, filtering, or acceleration','https://images.pexels.com/photos/2121121/pexels-photo-2121121.jpeg?auto=compress&amp;cs=tinysrgb&amp;h=350','2018-09-26',50);
 
 --
 INSERT INTO user_favourites (user_id, item_id) VALUES

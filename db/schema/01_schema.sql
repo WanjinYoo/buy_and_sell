@@ -6,14 +6,14 @@
 -- Schema midterm
 -- -----------------------------------------------------
 -- CREATE DATABASE IF NOT EXISTS midterm DEFAULT CHARACTER SET utf8;
--- 
+--
 \c midterm
--- 
+--
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS items CASCADE;
 DROP TABLE IF EXISTS user_favourites CASCADE;
 DROP TABLE IF EXISTS conversations CASCADE;
--- 
+--
 CREATE TABLE users (
   id SERIAL PRIMARY KEY NOT NULL,
   name VARCHAR(255) NOT NULL,
@@ -21,7 +21,7 @@ CREATE TABLE users (
   phone VARCHAR(255) NOT NULL,
   is_admin BOOLEAN NOT NULL DEFAULT 'N'
 );
--- 
+--
 CREATE TABLE items (
   id SERIAL PRIMARY KEY NOT NULL,
   title VARCHAR(255) NOT NULL,
@@ -37,14 +37,14 @@ CREATE TABLE items (
   deleted_date DATE DEFAULT NULL,
   deleted_reason VARCHAR(255) DEFAULT NULL
 );
--- 
- 
+--
+
 CREATE TABLE user_favourites (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   item_id INTEGER REFERENCES items(id) ON DELETE CASCADE
 );
--- 
+--
 CREATE TABLE conversations (
   id SERIAL PRIMARY KEY NOT NULL,
   from_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
@@ -60,4 +60,4 @@ ALTER TABLE users OWNER TO labber;
 ALTER TABLE user_favourites OWNER TO labber;
 ALTER TABLE items OWNER TO labber;
 ALTER TABLE conversations OWNER TO labber;
--- 
+--

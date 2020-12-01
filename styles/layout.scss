@@ -31,15 +31,13 @@ body {
       text-align: center;
     }
     h5 {
-
+      overflow-wrap: anywhere;
     }
     a {
       margin-left: 5%;
       margin-right: 8%;
     }
-
   }
-
   .inner-content {
     display: flex;
     align-items: center;
