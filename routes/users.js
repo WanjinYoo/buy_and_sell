@@ -23,19 +23,6 @@ module.exports = (db) => {
       });
   });
 
-  router.get("/favourites", (req, res) => {
-    db.query(`SELECT * FROM user_favourites;`)
-      .then(data => {
-        const users = data.rows;
-        res.json(users);
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
-  });
-
   router.get("/login/:id", (req, res) => {
     req.session[`uesrid`] = req.params.id;
 
@@ -55,7 +42,7 @@ module.exports = (db) => {
     req.session[`uesrid`] = null;
     res.redirect('/');
   });
-  
+
   router.get("/login", (req, res) => {
     db.query(`SELECT name
     FROM users
