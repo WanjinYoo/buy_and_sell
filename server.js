@@ -52,14 +52,21 @@ app.use(express.static("public"));
 const usersRoutes = require("./routes/users");
 const itemsRoutes = require("./routes/items");
 const conversationsRoutes = require("./routes/conversations");
+const createMessage = require("./routes/createMessage");
 const widgetsRoutes = require("./routes/widgets");
+const myFavRoutes = require("./routes/myFav");
+const cardsRoutes = require("./routes/cards");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
 app.use("/api/items", itemsRoutes(db));
 app.use("/api/conversations", conversationsRoutes(db));
+app.use("/api/createMessage", createMessage(db));
 app.use("/api/widgets", widgetsRoutes(db));
+app.use("/api/myFav", myFavRoutes(db));
+app.use("/api/cards", cardsRoutes(db));
+
 // Note: mount other resources here, using the same pattern above
 
 
@@ -71,7 +78,7 @@ app.use("/api/widgets", widgetsRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
-  res.render("index",{username : req.session['username'] || null});
+  res.redirect("/api/cards");
 });
 
 app.listen(PORT, () => {

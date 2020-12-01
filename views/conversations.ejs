@@ -8,7 +8,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Conversations TEMP</title>
+  <title>Conversations</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="">
@@ -23,7 +23,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <!-- Moment.js -->
+  <!-- Moment.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"
     integrity="sha512-rmZcZsyhe0/MAjquhTgiUcb4d9knaFc7b5xAfju483gbEXTkeJRUMIPk6s3ySZMYUHEcjKbjLjyddGWMrNEvZg=="
     crossorigin="anonymous"></script>
@@ -33,7 +33,6 @@
   <script type="text/javascript" src="/public/scripts/home.js"></script>
   <script type="text/javascript" src="/public/scripts/myFavorites.js"></script>
   <script type="text/javascript" src="/public/scripts/items.js"></script>
-
 </head>
 
 <body>
@@ -45,18 +44,36 @@
     <div class="item-id">
       <% for(const group of groups) { %>
       </br>
-      <p class='item-name'><%= group[0].item%></p>
-      <div id=<%=group[0].id%>class="messages">
-        <% for(const message of group) { %>
-        <div class='messageLine'>
-          <span><%= moment(message.date).format('Do MMM, YYYY')%> </span><span><%=message.from%> </span><span><%=message.message%>></span></div>
-        <%}%>
-      <%}%>
+      <div class='message-box'>
+        <p class='item-name'><%= group[0].item%>&nbsp-&nbsp<%=group[0].id%></p>
+        <div id='<%=group[0].id%>' class="messages">
+          <% for(const message of group) { %>
+          <div class='message-line'>
+            <div class='date-from'>
+              <div><%= moment(message.date).format('Do MMM, YYYY')%>&nbsp-&nbsp&nbsp</div>
+              <div> <%= message.from%>: </div>
+            </div>
+            <div class='message'>
+              <span><%=message.message%></span>
+            </div>
+          </div>
+          <%}%>
+        </div>
+        <form class="message-form" action="/api/createMessage/<%=group[0].id%>/<%=userId%>/<%= group[0].buyer_id%>", method="POST">
+          <label class='textareaContainer' for="message-text">Your message?<%=group[0].id%>&nbsp<%= group[0].buyer_id%></label>
+          <textarea class='textarea' name="text" id="message-text"></textarea>
+          <div class="box-button">
+            <div>
+              <button class="message-button" type="submit">Submit</button>
+            </div>
+          </div>
+        </form>
+
       </div>
-    </div>
-  </div>
-  <script src="" async defer></script>
+      <%}%>
+        </div>
+      </div>
+      <script src="" async defer></script>
 </body>
 
 </html>
-moment(yourDateVariable).format('Do MMMM, YYYY')

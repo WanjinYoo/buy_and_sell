@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Create Conversation</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="/scripts/app.js"></script>
+  
+    <!-- Extrenal CSS Library -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  
+    <!-- Moment.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"
+      integrity="sha512-rmZcZsyhe0/MAjquhTgiUcb4d9knaFc7b5xAfju483gbEXTkeJRUMIPk6s3ySZMYUHEcjKbjLjyddGWMrNEvZg=="
+      crossorigin="anonymous"></script>
+  
+    <!-- Local Js Files -->
+    <!-- <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script> -->
+    <!-- <script type="text/javascript" src="/public/scripts/home.js"></script> -->
+    <!-- <script type="text/javascript" src="/public/scripts/myFavorites.js"></script> -->
+    <!-- <script type="text/javascript" src="/public/scripts/items.js"></script> -->
+    <!-- <script type="text/javascript" src="/public/scripts/createMessage.js"></script> -->
+  </head>
+  <body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <%- include('header') %>
+    <main class="create-message-container">
+      <section class="new-message">
+        <form class="message-form" action="/api/createMessage/<%=itemId%>/<%=userId%>", method="POST">
+          <label class='textareaContainer' for="message-text">Your message?</label>
+          <textarea class='textarea' name="text" id="message-text"></textarea>
+          <div class="box-button">
+            <div>
+              <button class="message-button" type="submit">Submit</button>
+            </div>
+          </div>
+        </form>
+      </section>
+    </main>
+ 
+    <script src="" async defer></script>
+  </body>
+</html>

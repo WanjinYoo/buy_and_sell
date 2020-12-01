@@ -6,7 +6,6 @@ let queryParams = [];
 const initQueryVars = (queryString, queryParams) => {
   queryString = '';
   queryParams = [];
-  console.log(queryParams, 'query params INIT=-=-=-=-=-==-');
 };
 
 const checkAdmin = (db, userId) => {
@@ -20,23 +19,38 @@ const getAllConversationsByUser = (db, userId, isAdmin) => {
   initQueryVars(queryString, queryParams);
   queryParams = [userId];
   queryString = `
-  SELECT items.id, items.title AS item ,users.name AS from, message, message_date AS date
+  SELECT items.id, buyer_id, items.title AS item ,users.name AS from, message, message_date AS date
   FROM conversations 
   JOIN users on users.id=from_id
   JOIN items on item_id=items.id `;
   if (!isAdmin) {
     queryString += `WHERE sold = 'false'
     AND buyer_id = $1 
-    ORDER BY message_date;`;
+    ORDER BY item_id, message_date;`;
     return db.query(queryString, queryParams);
   } else {
     queryString += `WHERE sold = 'false'
-    ORDER BY message_date;`;
+    ORDER BY item_id, message_date;`;
     return db.query(queryString);
   }
+};
+
+const addMsgFromBuyer = (db, messageObject) => {
+  initQueryVars(queryString, queryParams);
+  // console.log(messageObject, 'MESSAGE OBJECT TO WRITE...');
+  queryParams = [
+    messageObject.userId,
+    messageObject.buyerId,
+    messageObject.itemId,
+    messageObject.message
+  ];
+  queryString = `INSERT INTO conversations (from_id, buyer_id, item_id, message)
+  VALUES ($1, $2, $3, $4) RETURNING *;`;
+  return db.query(queryString, queryParams);
 };
 
 module.exports = {
   getAllConversationsByUser,
   checkAdmin,
+  addMsgFromBuyer,
 };
