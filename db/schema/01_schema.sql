@@ -27,13 +27,14 @@ CREATE TABLE items (
   title VARCHAR(255) NOT NULL,
   description VARCHAR(255) NOT NULL,
   thumbnail_photo_url VARCHAR(255) NOT NULL,
-  date_listed DATE NOT NULL,
+  date_listed DATE NOT NULL DEFAULT NOW(),
   price INTEGER NOT NULL,
   number_of_likes INTEGER DEFAULT 0,
   sold BOOLEAN DEFAULT 'N',
   sold_to INTEGER REFERENCES users(id),
   sold_date DATE,
   deleted BOOLEAN DEFAULT 'N',
+  deleted_date DATE DEFAULT NULL,
   deleted_reason VARCHAR(255) DEFAULT NULL
 );
 -- 

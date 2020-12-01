@@ -6,6 +6,7 @@
  */
 
 const express = require('express');
+const client  = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
 const router  = express.Router();
 const helpers = require('../db/helper/conversations.js');
 const userHelpers = require('../db/helper/users.js');
@@ -36,14 +37,27 @@ module.exports = function(db) {
     if (req.body.text.length !== 0) {
       helpers.addMsgFromBuyer(db, messageObject)
         .then((data) => {
-          // console.log(data.rows[0]);
           Promise.resolve((data.rows[0]));
           const userId = req.session[`userId`];
           userHelpers.getUserById(db, userId)
             .then(data => {
-            // const isAdmin = data.rows[0].is_admin;
-              const userName = data.rows[0].name;
-              const templateVars = {userName};
+              const isAdmin = data.rows[0].is_admin;
+              const sellerName = data.rows[0].name;
+              if (isAdmin) {
+                userHelpers.getUserById(db, req.params.buyerId)
+                  .then(data => {
+                    const buyerPhoneNumber = data.rows[0].phone;
+                    client.messages
+                      .create({
+                        to: buyerPhoneNumber,
+                        from: process.env.TWILIO_PHONE_NUMBER,
+                        body: `Message from ${sellerName} - ${req.body.text}. Please login to respond.`
+                      })
+                      .then((message) => console.log(message.sid));
+                  });
+              }
+              // const userName = data.rows[0].name;
+              // const templateVars = {userName};
               res.redirect('/api/conversations');
             })
             .catch(e => {
@@ -53,5 +67,6 @@ module.exports = function(db) {
         });
     }
   });
+
   return router;
 };

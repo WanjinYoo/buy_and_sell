@@ -45,7 +45,10 @@
       <% for(const group of groups) { %>
       </br>
       <div class='message-box'>
-        <p class='item-name bg-secondary'><strong><%= group[0].item_name%>&nbsp-&nbsp<%=group[0].item_id%></strong></p>
+        <a class="bg-secondary" href='/api/items/<%=group[0].item_id%>'>
+          <p class='item-name bg-secondary'><strong><%= group[0].item_name%>&nbsp-&nbsp<%=group[0].item_id%></strong>
+          </p>
+        </a>
         <div id='<%=group[0].id%>' class="messages">
           <% for(const message of group) { %>
           <div class='message-line'>
@@ -59,9 +62,11 @@
           </div>
           <%}%>
         </div>
-        <form class="message-form" action="/api/createMessage/<%=group[0].item_id%>/<%=userId%>/<%= group[0].buyer_id%>", method="POST">
+        <form class="message-form" action="/api/createMessage/<%=group[0].item_id%>/<%=userId%>/<%= group[0].buyer_id%>",
+          method="POST">
           <% if(isAdmin) {%>
-          <label class='textareaContainer' for="message-text"><strong>Message&nbsp-&nbsp<%= group[0].buyer_name%></strong></label>
+          <label class='textareaContainer'
+            for="message-text"><strong>Message&nbsp-&nbsp<%= group[0].buyer_name%></strong></label>
           <% } else { %>
           <label class='textareaContainer' for="message-text">Message seller -</label>
           <% } %>

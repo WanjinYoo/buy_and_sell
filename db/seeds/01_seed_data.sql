@@ -1,13 +1,12 @@
 insert into users (name, email, phone, is_admin)
-VALUES ('Stephan', 'stephan@paul.com', '1234567890', 'Y');
+VALUES ('Stephan', 'admin@admin.com', '1234567890', 'Y');
 
 INSERT INTO users (name, email, phone)
-VALUES  ('Rahul', 'rahul@shial.com', '1234567890'),
-  ('Wanjin', 'wanjin@yoo.com', '1234567890'),
-  ('Random', 'random@mail.com', '1234567890'),
+VALUES  ('Rahul', 'rahul.shial@gmail.com', '+15878892503'),
+  ('Wanjin', 'wanjin@yoo.com', '+12502179995'),
+  ('Dominic Parks','victoriablackwell@outlookcom', '+19514091382'),
   ('Eva Stanley','sebastianguerra@ymailcom', '1234567890'),
   ('Louisa Meyer','jacksonrose@hotmailcom', '1234567890'),
-  ('Dominic Parks','victoriablackwell@outlookcom', '1234567890'),
   ('Sue Luna','jasonvincent@gmxcom', '1234567890'),
   ('Rosalie Garza','jacksondavid@gmxcom', '1234567890'),
   ('Etta West','charlielevy@yahoocom', '1234567890'),
@@ -78,3 +77,11 @@ INSERT INTO conversations (from_id, buyer_id, item_id, message, message_date)
 VALUES (1, 2, 5, 'Sold!', Now());
 INSERT INTO conversations (from_id, buyer_id, item_id, message, message_date)
 VALUES (2, 2, 5, 'Thank you', Now());
+INSERT INTO conversations (from_id, buyer_id, item_id, message, message_date)
+VALUES (4, 4, 6, 'Is this available?', Now());
+INSERT INTO conversations (from_id, buyer_id, item_id, message, message_date)
+VALUES (1, 4, 6, 'Yes', Now());
+INSERT INTO conversations (from_id, buyer_id, item_id, message, message_date)
+VALUES (4, 4, 6, 'Is the price fixed?', Now());
+INSERT INTO conversations (from_id, buyer_id, item_id, message, message_date)
+VALUES (1, 4, 6, 'Open to negotiations. How much do you want it for?', Now());
