@@ -19,7 +19,7 @@ const getAllConversationsByUser = (db, userId, isAdmin) => {
   initQueryVars(queryString, queryParams);
   queryParams = [userId];
   queryString = `
-  SELECT items.id, items.title AS item ,users.name AS from, message, message_date AS date
+  SELECT items.id, buyer_id, items.title AS item ,users.name AS from, message, message_date AS date
   FROM conversations 
   JOIN users on users.id=from_id
   JOIN items on item_id=items.id `;
