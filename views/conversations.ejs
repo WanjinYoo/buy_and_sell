@@ -45,13 +45,13 @@
       <% for(const group of groups) { %>
       </br>
       <div class='message-box'>
-        <p class='item-name'><%= group[0].item%>&nbsp-&nbsp<%=group[0].id%></p>
+        <p class='item-name bg-secondary'><strong><%= group[0].item%>&nbsp-&nbsp<%=group[0].id%></strong></p>
         <div id='<%=group[0].id%>' class="messages">
           <% for(const message of group) { %>
           <div class='message-line'>
             <div class='date-from'>
-              <div><%= moment(message.date).format('Do MMM, YYYY')%>&nbsp-&nbsp&nbsp</div>
-              <div> <%= message.from%>: </div>
+              <div class='msg-date'><%= moment(message.date).startOf('hour').fromNow()%>&nbsp-&nbsp&nbsp</div>
+              <div class='msg-from'> <%= message.from%>: </div>
             </div>
             <div class='message'>
               <span><%=message.message%></span>
@@ -60,7 +60,7 @@
           <%}%>
         </div>
         <form class="message-form" action="/api/createMessage/<%=group[0].id%>/<%=userId%>/<%= group[0].buyer_id%>", method="POST">
-          <label class='textareaContainer' for="message-text">Your message?<%=group[0].id%>&nbsp<%= group[0].buyer_id%></label>
+          <label class='textareaContainer' for="message-text">Your message?</label>
           <textarea class='textarea' name="text" id="message-text"></textarea>
           <div class="box-button">
             <div>
