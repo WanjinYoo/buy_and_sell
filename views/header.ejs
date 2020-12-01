@@ -11,9 +11,17 @@
       <li class="nav-item">
         <a class="nav-link" href="/">Home</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" id="MyFavorites" href="/api/myFav">Myfavorites</a>
-      </li>
+
+      <%if (isAdmin) {%>
+        <li class="nav-item">
+          <a class="nav-link" id="MyFavorites" href="/api/items/createlisting">Create Listing</a>
+        </li>
+      <%} else {%>
+        <li class="nav-item">
+          <a class="nav-link" id="MyFavorites" href="/api/myFav">Myfavorites</a>
+        </li>
+      <%}%>
+
       <li class="nav-item">
         <a class="nav-link Items" id="items" href="/api/items">Items</a>
       </li>

@@ -43,23 +43,12 @@
   <h1><%= items[0].description %></h1>
   <h1>Likes: <%= items[0].number_of_likes %></h1>
 
-<% if (admin) {%>
-  <form action="/api/items/<%=items[0].id%>/delete", method="POST">
-    <button type="submit">
-      Delete
-    </button>
-  </form>
-  <form action="/api/items/<%=items[0].id%>/sold", method="POST">
-    <button type="submit">
-      Mark As Sold
-    </button>
-  </form>
-<%} else {%>
-<%}%>
+<% if (isAdmin) {%>
 
+<%} else {%>
   <form class="message-form" action="/api/createMessage/<%=items[0].id%>/<%= messageUrl.userId %>/<%= messageUrl.userId %>", method="POST">
 
-    <label class='textareaContainer' for="message-text">Your message?</label>
+    <label class='textareaContainer' for="message-text">Message Seller</label>
     <textarea class='textarea' name="text" id="message-text"></textarea>
     <div class="box-button">
       <div>
@@ -67,19 +56,7 @@
       </div>
     </div>
   </form>
-
-
-
-
-
-
-
-
-
-
-
-
-
+<%}%>
 </body>
 </html>
 

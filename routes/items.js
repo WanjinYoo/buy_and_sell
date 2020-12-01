@@ -2,33 +2,31 @@ const express = require('express');
 const router = express.Router();
 const msgHelpers = require('../db/helper/conversations.js');
 const userHelpers = require('../db/helper/users.js');
+const itemHelpers = require('../db/helper/items.js');
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
-    db.query(`SELECT name
-    FROM users
-    Where id = ${req.session[`userId`]};`)
 
+    const userId = req.session['userId'];
+    userHelpers.getUserById(db, userId)
       .then(data => {
-        const usersName = data.rows[0];
-        req.session["userName"] = usersName.name;
+        const userName = data.rows[0].name;
+        const isAdmin = data.rows[0].is_admin;
         db.query(`SELECT * FROM items;`)
-        // QUERY FOR THINGS THAT ARE ONLY NOT DELETED OR MARKED AS DELETED
           .then(data => {
 
-            let items = [];
-
+            let items = []
             if (req.query.sort === 'price') {
-              items = data.rows.sort(function(a, b) {
+              items = data.rows.sort(function (a, b) {
                 return a.price - b.price;
               });
             } else {
               items = data.rows;
             }
-
             templateVars = {
               items,
-              userName: req.session['userName']
+              userName,
+              isAdmin
             };
 
             res.render('items', templateVars);
@@ -42,28 +40,40 @@ module.exports = (db) => {
       });
   });
 
-  router.get("/:id", (req, res) => {
+  router.get("/createlisting", (req, res) => {
+    const userId = req.session[`userId`];
+    userHelpers.getUserById(db, userId)
+      .then(data => {
+        const isAdmin = data.rows[0].is_admin;
+        const userName = data.rows[0].name;
+        const templateVars = { isAdmin, userName };
+        if (isAdmin) {
+          res.render("createlisting", templateVars)
+        } else {
+          res.redirect("/")
+        }
+      })
+  });
 
+  router.get("/:id", (req, res) => {
     const userId = req.session[`userId`];
     userHelpers.getUserById(db, userId)
 
       .then(data => {
         const isAdmin = data.rows[0].is_admin;
         const userName = data.rows[0].name;
-        console.log(userName, isAdmin, '+++++++++++++++++');
-        msgHelpers.getAllConversationsByUser(db, userId, isAdmin);
-
         db.query(`SELECT * FROM items
-        WHERE id = ${req.params.id}
-        ;`)
+      WHERE id = ${req.params.id}
+
+      ;`)
           .then(data => {
 
             const items = data.rows;
             const templateVars = {
               items,
-              userName: req.session['userName'],
+              userName,
               messageUrl: req.session,
-              admin: isAdmin
+              isAdmin
             };
             res.render('specific_item', templateVars);
           })
@@ -73,33 +83,35 @@ module.exports = (db) => {
               .json({ error: err.message });
           });
       });
+  });
+
+  router.post("/created", (req, res) => {
+
+    itemHelpers.createdListing(db, req.body.text)
+      .then(data => {
+        const newItem = data.rows[0].id;
+        res.redirect(`/api/items/${newItem}`)
+      })
 
   });
 
+
   router.post("/:id/delete", (req, res) => {
-    console.log('DELTED THIS ITEM');
+    itemHelpers.deleteItem(db, req.params.id)
+      .then(data => {
+        console.log('DELTED THIS ITEM')
+        res.redirect('/api/items')
+      })
   });
 
   router.post("/:id/sold", (req, res) => {
-    console.log('MARKED AS SOLD');
-  });
-
-  router.get("/create", (req, res) => {
-
-    // WHERE id = ${WHATEVER WAS CLICKED}
-
-    db.query(`SELECT * FROM items
-    WHERE id = 1
-    ;`)
+    itemHelpers.soldItem(db, req.params.id)
       .then(data => {
-        const item = data.rows;
-        res.json(item);
+        console.log('MARKED AS SOLD');
+        res.redirect('/api/items')
       })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
   });
+
+
   return router;
 };
