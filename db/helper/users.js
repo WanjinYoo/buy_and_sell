@@ -9,7 +9,7 @@ const initQueryVars = (queryString, queryParams) => {
 const getUserById = (db, userId) => {
   initQueryVars(queryString, queryParams);
   queryParams = [userId];
-  queryString = `SELECT name, is_admin FROM users where id = $1;`;
+  queryString = `SELECT name, phone, email, is_admin FROM users where id = $1;`;
   return db.query(queryString, queryParams);
 };
 

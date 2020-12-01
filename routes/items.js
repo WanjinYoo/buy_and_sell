@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const helpers = require('../db/helper/conversations.js');
+const msgHelpers = require('../db/helper/conversations.js');
+const userHelpers = require('../db/helper/users.js');
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
@@ -18,7 +19,7 @@ module.exports = (db) => {
             let items = [];
 
             if (req.query.sort === 'price') {
-              items = data.rows.sort(function (a, b) {
+              items = data.rows.sort(function(a, b) {
                 return a.price - b.price;
               });
             } else {
@@ -44,26 +45,26 @@ module.exports = (db) => {
   router.get("/:id", (req, res) => {
 
     const userId = req.session[`userId`];
-    helpers.checkAdmin(db, userId)
+    userHelpers.getUserById(db, userId)
 
       .then(data => {
         const isAdmin = data.rows[0].is_admin;
         const userName = data.rows[0].name;
         console.log(userName, isAdmin, '+++++++++++++++++');
-        helpers.getAllConversationsByUser(db, userId, isAdmin)
+        msgHelpers.getAllConversationsByUser(db, userId, isAdmin);
 
         db.query(`SELECT * FROM items
         WHERE id = ${req.params.id}
         ;`)
-        .then(data => {
+          .then(data => {
 
-            const items = data.rows
-            templateVars = {
+            const items = data.rows;
+            const templateVars = {
               items,
               userName: req.session['userName'],
               messageUrl: req.session,
               admin: isAdmin
-            }
+            };
             res.render('specific_item', templateVars);
           })
           .catch(err => {
@@ -71,7 +72,7 @@ module.exports = (db) => {
               .status(500)
               .json({ error: err.message });
           });
-        });
+      });
 
   });
 

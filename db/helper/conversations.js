@@ -8,12 +8,12 @@ const initQueryVars = (queryString, queryParams) => {
   queryParams = [];
 };
 
-const checkAdmin = (db, userId) => {
-  initQueryVars(queryString, queryParams);
-  queryParams = [userId];
-  queryString = `SELECT name, is_admin FROM users where id = $1;`;
-  return db.query(queryString, queryParams);
-};
+// const checkAdmin = (db, userId) => {
+//   initQueryVars(queryString, queryParams);
+//   queryParams = [userId];
+//   queryString = `SELECT name, is_admin FROM users where id = $1;`;
+//   return db.query(queryString, queryParams);
+// };
 
 const getAllConversationsByUser = (db, userId, isAdmin) => {
   initQueryVars(queryString, queryParams);
@@ -51,6 +51,5 @@ const addMsgFromBuyer = (db, messageObject) => {
 
 module.exports = {
   getAllConversationsByUser,
-  checkAdmin,
   addMsgFromBuyer,
 };

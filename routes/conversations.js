@@ -7,7 +7,8 @@
 
 const express = require('express');
 const router  = express.Router();
-const helpers = require('../db/helper/conversations.js');
+const msgHelpers = require('../db/helper/conversations.js');
+const userHelpers = require('../db/helper/users.js');
 
 const assembleMessageGroups = (rows) => {
   const results = [];
@@ -30,11 +31,11 @@ const assembleMessageGroups = (rows) => {
 module.exports = function(db) {
   router.get("/", (req, res) => {
     const userId = req.session[`userId`];
-    helpers.checkAdmin(db, userId)
+    userHelpers.getUserById(db, userId)
       .then(data => {
         const isAdmin = data.rows[0].is_admin;
         const userName = data.rows[0].name;
-        helpers.getAllConversationsByUser(db, userId, isAdmin)
+        msgHelpers.getAllConversationsByUser(db, userId, isAdmin)
           .then(data => {
             const messages = data.rows;
             const messageGroups = assembleMessageGroups(messages);
