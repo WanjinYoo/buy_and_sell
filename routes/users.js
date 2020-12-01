@@ -22,44 +22,28 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
-
-  router.get("/favourites", (req, res) => {
-    db.query(`SELECT * FROM user_favourites;`)
-      .then(data => {
-        const users = data.rows;
-        res.json(users);
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
-  });
-
   router.get("/login/:id", (req, res) => {
-    req.session[`uesrid`] = req.params.id;
+    req.session[`userId`] = req.params.id;
 
     db.query(`SELECT name
     FROM users
-    Where id = ${req.session[`uesrid`]};`)
+    Where id = ${req.session[`userId`]};`)
       .then(data => {
         const usersname = data.rows[0];
         req.session["username"] = usersname.name;
-        console.log(req.session, "=-=-=-=-]-==-=-=-");
-        // res.send(username);
       });
     res.redirect('/api/items');
   });
 
   router.get("/logout", (req, res) => {
-    req.session[`uesrid`] = null;
+    req.session[`userId`] = null;
     res.redirect('/');
   });
-  
+
   router.get("/login", (req, res) => {
     db.query(`SELECT name
     FROM users
-    Where id = ${req.session[`uesrid`]};`)
+    Where id = ${req.session[`userId`]};`)
       .then(data => {
         // const usersname = data.rows[0];
         // req.session["username"] = username;
