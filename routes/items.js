@@ -3,6 +3,7 @@ const router = express.Router();
 const msgHelpers = require('../db/helper/conversations.js');
 const userHelpers = require('../db/helper/users.js');
 const itemHelpers = require('../db/helper/items.js');
+const userFavHelpers = require('../db/helper/userFavourites.js');
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
@@ -12,7 +13,7 @@ module.exports = (db) => {
       .then(data => {
         const userName = data.rows[0].name;
         const isAdmin = data.rows[0].is_admin;
-        db.query(`SELECT * FROM items;`)
+        itemHelpers.fetchItems(db)
           .then(data => {
 
             let items = []
@@ -28,10 +29,8 @@ module.exports = (db) => {
               userName,
               isAdmin
             };
-
             res.render('items', templateVars);
           })
-
           .catch(err => {
             res
               .status(500)
@@ -39,6 +38,69 @@ module.exports = (db) => {
           });
       });
   });
+
+  router.post("/priceFilter", (req, res) => {
+
+    const userId = req.session['userId'];
+    userHelpers.getUserById(db, userId)
+      .then(data => {
+        const userName = data.rows[0].name;
+        const isAdmin = data.rows[0].is_admin;
+        itemHelpers.fetchItems(db)
+          .then(data => {
+            itemHelpers.minMaxFilter(db, req.body.min, req.body.max)
+            .then(data => {
+
+              const items = data.rows.sort(function (a, b) {
+                return a.price - b.price;
+              });
+
+              templateVars = {
+                items,
+                userName,
+                isAdmin
+              };
+              res.render('items', templateVars);
+            })
+          })
+          .catch(err => {
+            res
+              .status(500)
+              .json({ error: err.message });
+          });
+      });
+  });
+
+
+  router.post("/favs/:id", (req, res) => {
+    const userId = req.session['userId'];
+    const itemId = req.params.id;
+    const add = 1
+    const remove = -1
+    // MAKE A FUNCTION CHECKING TO SEE IF LIKE FIRST THEN RUN THE HAS LIKED?
+    userFavHelpers.hasLiked(db, userId, itemId)
+      .then(data => {
+        if (data.rows.length === 0) {
+          userFavHelpers.addToFavourites(db, userId, itemId)
+            .then(data => {
+              itemHelpers.updateNumOfLikes(db, itemId, +1)
+                .then(data => {
+                  console.log('Likes Updated');
+                })
+            });
+        } else {
+          userFavHelpers.deleteFavourites(db, userId, itemId)
+            .then(data => {
+              itemHelpers.updateNumOfLikes(db, itemId, -1)
+                .then(data => {
+                  console.log('REMOVED LIKE');
+                })
+            })
+        }
+        //   res.redirect("/api/items");
+      });
+  });
+
 
   router.get("/createlisting", (req, res) => {
     const userId = req.session[`userId`];

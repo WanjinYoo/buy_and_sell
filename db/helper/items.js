@@ -1,4 +1,17 @@
+const fetchItems = (db) =>{
+  queryString = `SELECT * FROM items;`
+  return db.query(queryString);
+};
+const minMaxFilter = (db, min, max) =>{
+  queryParams = [
+    min,
+    max
+  ]
+ queryString = `SELECT * FROM items
+ WHERE price < $2 AND price > $1;`
 
+ return db.query(queryString, queryParams);
+};
 
 const deleteItem = (db, itemId) => {
   return db.query(`
@@ -28,8 +41,26 @@ VALUES ($1, $2, $3, $4)
   return db.query(queryString, queryParams);
 };
 
+const updateNumOfLikes = (db, itemId, incrementVal) => {
+  queryParams = [
+    itemId,
+    incrementVal
+  ]
+  queryString =
+  `UPDATE items
+  SET number_of_likes = number_of_likes + $2
+  WHERE id = $1;`;
+  console.log(queryString);
+  return db.query(queryString, queryParams);
+};
+
+
+
 module.exports = {
   deleteItem,
   soldItem,
   createdListing,
+  updateNumOfLikes,
+  fetchItems,
+  minMaxFilter,
 };
