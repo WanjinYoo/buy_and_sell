@@ -104,7 +104,7 @@ module.exports = (db) => {
                 });
             });
         }
-        res.redirect("/api/items");
+        res.redirect("/items");
       });
   });
 

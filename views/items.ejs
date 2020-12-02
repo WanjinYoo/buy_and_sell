@@ -87,17 +87,6 @@
                       </form>
                   </div>
                   <%}%>
-
-
-
-
-
-
-
-
-
-
-
                     <h6><%= moment(item.date_listed).startOf('hour').fromNow() %></h6>
                     <h6>Price: $<%= item.price %></h6>
                     <h6>Likes: <%= item.number_of_likes %></h6>
@@ -118,30 +107,9 @@
                 </button>
               </form>
             </div>
-<<<<<<< HEAD
-
-      </div>
-      <% if (isAdmin) {%>
-      <div>
-        <form action="/items/<%=elem.id%>/delete", method="POST">
-          <button type="submit">
-            Delete
-          </button>
-        </form>
-        <form action="/items/<%=elem.id%>/sold", method="POST">
-          <button type="submit">
-            Mark As Sold
-          </button>
-        </form>
-      </div>
-    <%}%>
-      <%}%>
-  <%}%>
-=======
           <%}%>
             <%}%>
         <%}%>
->>>>>>> stefler/finalFeaturesDay4
 
 </body>
 </html>
