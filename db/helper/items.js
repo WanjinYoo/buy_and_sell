@@ -14,6 +14,15 @@ const soldItem = (db, itemId) => {
   WHERE id = ${itemId};
   `);
 };
+const fetchCardItems = (db) => {
+  return db.query(`
+  SELECT title,date_listed,price,description,thumbnail_photo_url
+  FROM items
+  WHERE sold = 'N' AND deleted = 'N'
+  Order by date_listed
+  LIMIT 3;;
+  `);
+};
 
 const createdListing = (db, itemDetails) => {
   queryParams = [
@@ -32,4 +41,5 @@ module.exports = {
   deleteItem,
   soldItem,
   createdListing,
+  fetchCardItems,
 };

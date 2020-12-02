@@ -11,7 +11,8 @@ const app        = express();
 const morgan     = require('morgan');
 const path       = require('path');
 const cookieSession = require('cookie-session');
-
+const userHelpers = require('./db/helper/users.js');
+const itemHelpers = require('./db/helper/items.js');
 // PG database client/connection setup
 const { Pool } = require('pg');
 const dbParams = require('./lib/db.js');
@@ -75,7 +76,6 @@ const conversationsRoutes = require("./routes/conversations");
 const createMessage = require("./routes/createMessage");
 const widgetsRoutes = require("./routes/widgets");
 const myFavRoutes = require("./routes/myFav");
-const cardsRoutes = require("./routes/cards");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -85,7 +85,6 @@ app.use("/api/conversations", conversationsRoutes(db));
 app.use("/api/createMessage", createMessage(db));
 app.use("/api/widgets", widgetsRoutes(db));
 app.use("/api/myFav", myFavRoutes(db));
-app.use("/api/cards", cardsRoutes(db));
 
 // Note: mount other resources here, using the same pattern above
 
@@ -98,7 +97,7 @@ app.use("/api/cards", cardsRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
-  res.redirect("/api/cards");
+  res.redirect('/api/users/main');
 });
 
 app.listen(PORT, () => {

@@ -7,52 +7,74 @@
 
 const express = require('express');
 const router  = express.Router();
+const userHelpers = require('../db/helper/users.js');
+const itemHelpers = require('../db/helper/items.js');
+const moment = require("moment");
 
 module.exports = (db) => {
-  router.get("/", (req, res) => {
-    db.query(`SELECT * FROM users;`)
-      .then(data => {
-
-        const users = data.rows;
-        res.json({ users });
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
-  });
 
   router.get("/login/:id", (req, res) => {
     req.session[`userId`] = req.params.id;
-    console.log(req.session['userId'], '*********************');
-    db.query(`SELECT name
-    FROM users
-    Where id = ${req.session[`userId`]};`)
-      .then(data => {
-        const usersName = data.rows[0];
-        console.log(usersName, '++++++++++++++++++++++++');
-        req.session["userName"] = usersName.name;
-      });
-    res.redirect('/api/items');
+    res.redirect('/api/users/main');
   });
-
   router.get("/logout", (req, res) => {
     req.session[`userId`] = null;
-    req.session["userName"] = null;
-    res.redirect('/');
+    res.redirect('/api/users/main');
+  });
+  router.get("/main", (req, res) => {
+    const userId = req.session[`userId`];
+    let userName = '';
+    let is_admin = false;
+    if (userId) {
+      userHelpers.getUserById(db,userId)
+        .then(data => {
+          userName = data.rows[0].name;
+          is_admin = data.rows[0].is_admin;
+          return itemHelpers.fetchCardItems(db);
+        })
+        .then(data => {
+          const cardItems = data.rows;
+          const time = [];
+          for (const index in cardItems) {
+            time.push(moment(cardItems[index][`date_listed`]).startOf('hour').fromNow());
+          }
+          const templateVars = {
+            cardItems,
+            userName: userName,
+            isAdmin: is_admin,
+            time
+          };
+          res.render('index', templateVars);
+        })
+        .catch(err => {
+          res
+            .status(500)
+            .json({ error: err.message });
+        });
+    } else {
+      itemHelpers.fetchCardItems(db)
+        .then(data => {
+          const cardItems = data.rows;
+          const time = [];
+          for (const index in cardItems) {
+            time.push(moment(cardItems[index][`date_listed`]).startOf('hour').fromNow());
+          }
+          const templateVars = {
+            cardItems,
+            userName: userName,
+            isAdmin: is_admin,
+            time
+          };
+          res.render('index', templateVars);
+        })
+        .catch(err => {
+          res
+            .status(500)
+            .json({ error: err.message });
+        });
+    }
   });
 
-  router.get("/login", (req, res) => {
-    db.query(`SELECT name
-    FROM users
-    Where id = ${req.session[`userId`]};`)
-      .then(data => {
-        // const usersname = data.rows[0];
-        // req.session["username"] = username;
-        // res.send(usersname);
-      });
-  });
 
   return router;
 };
