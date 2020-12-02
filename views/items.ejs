@@ -44,7 +44,7 @@
     <h3>SortBy</h3>
     <a href="?sort=price-asc">Price - Low-High</a>
     <a href="?sort=price-desc">Price - Low-High</a>
-    <form action="/api/items/priceFilter" method="POST">
+    <form action="/items/priceFilter" method="POST">
       <textarea class="min-price" name="min" id="" placeholder="MIN price" cols="10" rows="1"></textarea>
       <textarea class="max-price" name="max" id="" cols="10" placeholder="MAX price" rows="1"></textarea>
       <button type="submit">
@@ -61,7 +61,7 @@
           <div class="item-border">
             <div class="inner-content">
               <img class="<%= item.id %>" style="width: 15%;" src=<%=item.thumbnail_photo_url%> alt="">
-              <a href='/api/items/<%=item.id%>'>
+              <a href='/items/<%=item.id%>'>
                 <h6><%=item.title%></h6>
               </a>
               <h5 class="title"><%= item.description.substring(0, 80) %> ... </h5>
@@ -71,7 +71,7 @@
                 <%} else if(itemsArray.includes(item.id)) {%>
                   <div class="fav">
                     <img style="width: 15px;" src="https://www.flaticon.com/svg/static/icons/svg/786/786432.svg" alt="">
-                    <form action="/api/items/favs/<%= item.id %>" method="POST">
+                    <form action="/items/favs/<%= item.id %>" method="POST">
                       <button style="color: blue;">
                         Favourite
                       </button>
@@ -80,7 +80,7 @@
                   <%} else {%>
                     <div class="fav">
                       <img style="width: 15px;" src="https://www.flaticon.com/svg/static/icons/svg/786/786432.svg" alt="">
-                      <form action="/api/items/favs/<%= item.id %>" method="POST">
+                      <form action="/items/favs/<%= item.id %>" method="POST">
                         <button>
                           Favourite
                         </button>
