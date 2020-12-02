@@ -49,6 +49,12 @@ body {
     align-items: center;
     justify-content: space-evenly;
   }
+  .fav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+  }
 
   .card {
     img {

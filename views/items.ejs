@@ -43,6 +43,13 @@
 
   <h3>SortBy</h3>
   <a href="?sort=price">Price</a>
+  <form action="/api/items/priceFilter" method="POST">
+    <textarea name="min" id="" placeholder="MIN price" cols="10" rows="1"></textarea>
+    <textarea name="max" id="" cols="10" placeholder="MAX price" rows="1"></textarea>
+    <button type="submit">
+      search
+    </button>
+  </form>
   <br>
   <a href="?sort=date">Date</a>
   <br>
@@ -53,18 +60,33 @@
     <% if (!(elem.sold || elem.deleted)) {%>
 
       <div class="item-border">
-            <div class="inner-content">
-              <img style="width: 15%;" src=<%=elem.thumbnail_photo_url%> alt="">
-              <a href='/api/items/<%=elem.id%>'>
-                <h6><%=elem.title%></h6>
-              </a>
-                  <h5 class="title"><%= elem.description.substring(0, 80) %> ... </h5>
+        <div class="inner-content">
+          <img style="width: 15%;" src=<%=elem.thumbnail_photo_url%> alt="">
+          <a href='/api/items/<%=elem.id%>'>
+            <h6><%=elem.title%></h6>
+          </a>
+          <h5 class="title"><%= elem.description.substring(0, 80) %> ... </h5>
+        </div>
+        <div class="test">
+          <% if (isAdmin) {%>
+          <%} else {%>
+            <div class="fav">
+                <img style="width: 15px;" src="https://www.flaticon.com/svg/static/icons/svg/786/786432.svg" alt="">
+                <form action="/api/items/favs/<%= elem.id %>" method="POST">
+                  <button>
+                    Favourite
+                  </button>
+                </form>
             </div>
-            <div class="test">
+            <%}%>
+
               <h6><%= moment(elem.date_listed).startOf('hour').fromNow() %></h6>
               <h6>Price: $<%= elem.price %></h6>
               <h6>Likes: <%= elem.number_of_likes %></h6>
             </div>
+            <div>
+            </div>
+
       </div>
       <% if (isAdmin) {%>
       <div>
@@ -82,5 +104,6 @@
     <%}%>
       <%}%>
   <%}%>
+
 </body>
 </html>
