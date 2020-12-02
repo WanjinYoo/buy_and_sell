@@ -1,5 +1,4 @@
 $(() => {
-
 //  THIS WORKS BUT STRETCH PROJECT
   // $(".fav").click(function () {
 
