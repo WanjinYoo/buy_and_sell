@@ -1,5 +1,5 @@
 const fetchItems = (db) =>{
-  queryString = `SELECT * FROM items;`
+  queryString = `SELECT * FROM items ORDER BY id;`
   return db.query(queryString);
 };
 const minMaxFilter = (db, min, max) =>{
@@ -8,7 +8,7 @@ const minMaxFilter = (db, min, max) =>{
     max
   ]
  queryString = `SELECT * FROM items
- WHERE price < $2 AND price > $1;`
+ WHERE price <= $2 AND price >= $1;`
 
  return db.query(queryString, queryParams);
 };
@@ -59,10 +59,10 @@ const updateNumOfLikes = (db, itemId, incrementVal) => {
   `UPDATE items
   SET number_of_likes = number_of_likes + $2
   WHERE id = $1;`;
+
   console.log(queryString);
   return db.query(queryString, queryParams);
 };
-
 
 
 module.exports = {

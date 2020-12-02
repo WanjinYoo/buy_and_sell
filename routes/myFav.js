@@ -2,6 +2,7 @@ const express = require('express');
 const router  = express.Router();
 const msgHelpers = require('../db/helper/conversations.js');
 const userHelpers = require('../db/helper/users.js');
+const userFavHelpers = require('../db/helper/userFavourites.js');
 module.exports = (db) => {
 
   router.get("/", (req, res) => {
@@ -17,12 +18,18 @@ module.exports = (db) => {
       .then(data => {
         const items = data.rows;
         console.log(items);
-        const templateVars = {
-          items,
-          userName: userName,
-          isAdmin: is_admin
-        };
-        res.render('items', templateVars);
+        userFavHelpers.fetchUserFavourites(db, userId)
+                .then(data =>{
+                  let itemsArray = data.rows.map(function(obj) { return obj.item_id; });
+
+                  const templateVars = {
+                    items,
+                    userName: userName,
+                    isAdmin: is_admin,
+                    itemsArray,
+                  };
+                  res.render('items', templateVars);
+                })
       })
       .catch(err => {
         res
