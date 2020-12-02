@@ -97,7 +97,7 @@ module.exports = (db) => {
                 })
             })
         }
-        //   res.redirect("/api/items");
+        //   res.redirect("/items");
       });
   });
 
@@ -152,7 +152,7 @@ module.exports = (db) => {
     itemHelpers.createdListing(db, req.body.text)
       .then(data => {
         const newItem = data.rows[0].id;
-        res.redirect(`/api/items/${newItem}`)
+        res.redirect(`/items/${newItem}`)
       })
 
   });
@@ -162,7 +162,7 @@ module.exports = (db) => {
     itemHelpers.deleteItem(db, req.params.id)
       .then(data => {
         console.log('DELTED THIS ITEM')
-        res.redirect('/api/items')
+        res.redirect('/items')
       })
   });
 
@@ -170,7 +170,7 @@ module.exports = (db) => {
     itemHelpers.soldItem(db, req.params.id)
       .then(data => {
         console.log('MARKED AS SOLD');
-        res.redirect('/api/items')
+        res.redirect('/items')
       })
   });
 

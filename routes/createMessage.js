@@ -58,7 +58,7 @@ module.exports = function(db) {
               }
               // const userName = data.rows[0].name;
               // const templateVars = {userName};
-              res.redirect('/api/conversations');
+              res.redirect('/conversations');
             })
             .catch(e => {
               console.error(e);

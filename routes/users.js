@@ -15,12 +15,14 @@ module.exports = (db) => {
 
   router.get("/login/:id", (req, res) => {
     req.session[`userId`] = req.params.id;
-    res.redirect('/api/users/main');
+    res.redirect('/users/main');
   });
+
   router.get("/logout", (req, res) => {
     req.session[`userId`] = null;
-    res.redirect('/api/users/main');
+    res.redirect('/users/main');
   });
+  
   router.get("/main", (req, res) => {
     const userId = req.session[`userId`];
     let userName = '';

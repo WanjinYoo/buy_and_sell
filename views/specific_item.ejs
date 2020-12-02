@@ -46,7 +46,7 @@
 <% if (isAdmin) {%>
 
 <%} else {%>
-  <form class="message-form" action="/api/createMessage/<%=items[0].id%>/<%= messageUrl.userId %>/<%= messageUrl.userId %>", method="POST">
+  <form class="message-form" action="/createMessage/<%=items[0].id%>/<%= messageUrl.userId %>/<%= messageUrl.userId %>", method="POST">
 
     <label class='textareaContainer' for="message-text">Message Seller</label>
     <textarea class='textarea' name="text" id="message-text"></textarea>

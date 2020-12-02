@@ -39,7 +39,11 @@ module.exports = function(db) {
           .then(data => {
             const messages = data.rows;
             const messageGroups = assembleMessageGroups(messages);
-            const templateVars = {groups: messageGroups, userName: userName, userId, isAdmin};
+            const templateVars = {
+              groups: messageGroups,
+              userName: userName,
+              userId,
+              isAdmin };
             res.render('conversations', templateVars);
           })
           .catch(err => {

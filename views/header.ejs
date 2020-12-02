@@ -15,19 +15,19 @@
 
       <%if (isAdmin) {%>
         <li class="nav-item">
-          <a class="nav-link" id="MyFavorites" href="/api/items/createlisting">Create Listing</a>
+          <a class="nav-link" id="MyFavorites" href="/items/createlisting">Create Listing</a>
         </li>
       <%} else {%>
         <li class="nav-item">
-          <a class="nav-link" id="MyFavorites" href="/api/myFav">Myfavorites</a>
+          <a class="nav-link" id="MyFavorites" href="/myFav">Myfavorites</a>
         </li>
       <%}%>
 
       <li class="nav-item">
-        <a class="nav-link Items" id="items" href="/api/items">Items</a>
+        <a class="nav-link Items" id="items" href="/items">Items</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link Conversations" id="conversations" href="/api/conversations">Conversations</a>
+        <a class="nav-link Conversations" id="conversations" href="/conversations">Conversations</a>
       </li>
     </ul>
     <% } %>

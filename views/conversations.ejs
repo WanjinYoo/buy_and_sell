@@ -45,7 +45,7 @@
       <% for(const group of groups) { %>
       </br>
       <div class='message-box'>
-        <a class="bg-secondary" href='/api/items/<%=group[0].item_id%>'>
+        <a class="bg-secondary" href='/items/<%=group[0].item_id%>'>
           <p class='item-name bg-secondary'><strong><%= group[0].item_name%>&nbsp-&nbsp<%=group[0].item_id%></strong>
           </p>
         </a>
@@ -62,7 +62,7 @@
           </div>
           <%}%>
         </div>
-        <form class="message-form" action="/api/createMessage/<%=group[0].item_id%>/<%=userId%>/<%= group[0].buyer_id%>",
+        <form class="message-form" action="/createMessage/<%=group[0].item_id%>/<%=userId%>/<%= group[0].buyer_id%>",
           method="POST">
           <% if(isAdmin) {%>
           <label class='textareaContainer'

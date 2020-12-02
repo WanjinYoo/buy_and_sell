@@ -5,14 +5,11 @@ require('dotenv').config();
 const PORT       = process.env.PORT || 8080;
 const ENV        = process.env.ENV || "development";
 const express    = require("express");
-const bodyParser = require("body-parser");
 const sass       = require("node-sass-middleware");
 const app        = express();
 const morgan     = require('morgan');
 const path       = require('path');
 const cookieSession = require('cookie-session');
-const userHelpers = require('./db/helper/users.js');
-const itemHelpers = require('./db/helper/items.js');
 // PG database client/connection setup
 const { Pool } = require('pg');
 const dbParams = require('./lib/db.js');
@@ -59,13 +56,13 @@ app.use(cookieSession({
 
 app.use(express.static(path.join(__dirname)));
 
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/styles", sass({
   src: __dirname + "/styles",
   dest: __dirname + "/public/styles",
   debug: true,
   outputStyle: 'expanded'
 }));
+
 app.use(express.static("public"));
 
 // Separated Routes for each Resource
@@ -74,32 +71,30 @@ const usersRoutes = require("./routes/users");
 const itemsRoutes = require("./routes/items");
 const conversationsRoutes = require("./routes/conversations");
 const createMessage = require("./routes/createMessage");
-const widgetsRoutes = require("./routes/widgets");
 const myFavRoutes = require("./routes/myFav");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
-app.use("/api/users", usersRoutes(db));
-app.use("/api/items", itemsRoutes(db));
-app.use("/api/conversations", conversationsRoutes(db));
-app.use("/api/createMessage", createMessage(db));
-app.use("/api/widgets", widgetsRoutes(db));
-app.use("/api/myFav", myFavRoutes(db));
+app.use("/users", usersRoutes(db));
+app.use("/items", itemsRoutes(db));
+app.use("/conversations", conversationsRoutes(db));
+app.use("/createMessage", createMessage(db));
+app.use("/myFav", myFavRoutes(db));
 
 // Note: mount other resources here, using the same pattern above
 
 
 
 
-// /api/page is the json that we show on the "/" homepage
+// /page is the json that we show on the "/" homepage
 
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
-  res.redirect('/api/users/main');
+  res.redirect('/users/main');
 });
 
 app.listen(PORT, () => {
-  console.log(`Example app listening on port ${PORT}`);
+  console.log(`buyAndSell app listening on port ${PORT}`);
 });
