@@ -3,14 +3,19 @@
   <div class="card">
     <img src="<%= cardItems[i].thumbnail_photo_url %>" class="card-img-top">
     <div class="card-body border-info mb-3">
-      <h5 class="card-title"> <%= cardItems[i].title %></h5>
-      <p class="card-text"> Price: $<%= cardItems[i].price %> </p>
-      <p class="card-text"> <%= cardItems[i].description.substring(0, 80) %></p>
+      <% if(userId) { %>
+        <a class="bg-secondary" href='/items/<%=cardItems[i].id%>'>     
+        <h5 class="card-title"><%=cardItems[i].title %></h5>
+      </a>
+        <% } else { %>
+        <h5 class="card-title"><%= cardItems[i].title %></h5>
+        <% } %>
+        <p class="card-text"> Price: $<%= cardItems[i].price %> </p>
+        <p class="card-text"> <%= cardItems[i].description.substring(0, 80) %></p>
     </div>
     <div class="card-footer">
       <small class="text-muted"><%= time[i] %></small>
     </div>
   </div>
   <% }%>
-
 </div>

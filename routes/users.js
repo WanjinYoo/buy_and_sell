@@ -22,59 +22,48 @@ module.exports = (db) => {
     req.session[`userId`] = null;
     res.redirect('/users/main');
   });
+
+  router.post("/logout", (req, res) => {
+    req.session = null;
+    res.redirect('/users/main');
+  });
   
   router.get("/main", (req, res) => {
     const userId = req.session[`userId`];
-    let userName = '';
-    let is_admin = false;
-    if (userId) {
-      userHelpers.getUserById(db,userId)
-        .then(data => {
+
+    userHelpers.getUserById(db,userId)
+      .then(data => {
+        let userName = '';
+        let isAdmin = false;
+        if (data.rows.length === 0) {
+          userName = '';
+          isAdmin = false;
+        } else {
           userName = data.rows[0].name;
-          is_admin = data.rows[0].is_admin;
-          return itemHelpers.fetchCardItems(db);
-        })
-        .then(data => {
-          const cardItems = data.rows;
-          const time = [];
-          for (const index in cardItems) {
-            time.push(moment(cardItems[index][`date_listed`]).startOf('hour').fromNow());
-          }
-          const templateVars = {
-            cardItems,
-            userName: userName,
-            isAdmin: is_admin,
-            time
-          };
-          res.render('index', templateVars);
-        })
-        .catch(err => {
-          res
-            .status(500)
-            .json({ error: err.message });
-        });
-    } else {
-      itemHelpers.fetchCardItems(db)
-        .then(data => {
-          const cardItems = data.rows;
-          const time = [];
-          for (const index in cardItems) {
-            time.push(moment(cardItems[index][`date_listed`]).startOf('hour').fromNow());
-          }
-          const templateVars = {
-            cardItems,
-            userName: userName,
-            isAdmin: is_admin,
-            time
-          };
-          res.render('index', templateVars);
-        })
-        .catch(err => {
-          res
-            .status(500)
-            .json({ error: err.message });
-        });
-    }
+          isAdmin = data.rows[0].is_admin;
+        }
+        itemHelpers.fetchCardItems(db)
+          .then(data => {
+            const cardItems = data.rows;
+            const time = [];
+            for (const index in cardItems) {
+              time.push(moment(cardItems[index][`date_listed`]).startOf('hour').fromNow());
+            }
+            const templateVars = {
+              cardItems,
+              userId,
+              userName,
+              isAdmin,
+              time
+            };
+            res.render('index', templateVars);
+          });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
   });
 
 

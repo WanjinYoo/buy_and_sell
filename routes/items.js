@@ -16,15 +16,15 @@ module.exports = (db) => {
         itemHelpers.fetchItems(db)
           .then(data => {
 
-            let items = []
+            let items = [];
             if (req.query.sort === 'price') {
-              items = data.rows.sort(function (a, b) {
+              items = data.rows.sort(function(a, b) {
                 return a.price - b.price;
               });
             } else {
               items = data.rows;
             }
-            templateVars = {
+            const templateVars = {
               items,
               userName,
               isAdmin
@@ -49,19 +49,19 @@ module.exports = (db) => {
         itemHelpers.fetchItems(db)
           .then(data => {
             itemHelpers.minMaxFilter(db, req.body.min, req.body.max)
-            .then(data => {
+              .then(data => {
 
-              const items = data.rows.sort(function (a, b) {
-                return a.price - b.price;
+                const items = data.rows.sort(function(a, b) {
+                  return a.price - b.price;
+                });
+
+                templateVars = {
+                  items,
+                  userName,
+                  isAdmin
+                };
+                res.render('items', templateVars);
               });
-
-              templateVars = {
-                items,
-                userName,
-                isAdmin
-              };
-              res.render('items', templateVars);
-            })
           })
           .catch(err => {
             res
@@ -75,8 +75,6 @@ module.exports = (db) => {
   router.post("/favs/:id", (req, res) => {
     const userId = req.session['userId'];
     const itemId = req.params.id;
-    const add = 1
-    const remove = -1
     // MAKE A FUNCTION CHECKING TO SEE IF LIKE FIRST THEN RUN THE HAS LIKED?
     userFavHelpers.hasLiked(db, userId, itemId)
       .then(data => {
@@ -86,7 +84,7 @@ module.exports = (db) => {
               itemHelpers.updateNumOfLikes(db, itemId, +1)
                 .then(data => {
                   console.log('Likes Updated');
-                })
+                });
             });
         } else {
           userFavHelpers.deleteFavourites(db, userId, itemId)
@@ -94,8 +92,8 @@ module.exports = (db) => {
               itemHelpers.updateNumOfLikes(db, itemId, -1)
                 .then(data => {
                   console.log('REMOVED LIKE');
-                })
-            })
+                });
+            });
         }
         //   res.redirect("/items");
       });
@@ -110,11 +108,11 @@ module.exports = (db) => {
         const userName = data.rows[0].name;
         const templateVars = { isAdmin, userName };
         if (isAdmin) {
-          res.render("createlisting", templateVars)
+          res.render("createlisting", templateVars);
         } else {
-          res.redirect("/")
+          res.redirect("/");
         }
-      })
+      });
   });
 
   router.get("/:id", (req, res) => {
@@ -152,8 +150,8 @@ module.exports = (db) => {
     itemHelpers.createdListing(db, req.body.text)
       .then(data => {
         const newItem = data.rows[0].id;
-        res.redirect(`/items/${newItem}`)
-      })
+        res.redirect(`/items/${newItem}`);
+      });
 
   });
 
@@ -161,17 +159,17 @@ module.exports = (db) => {
   router.post("/:id/delete", (req, res) => {
     itemHelpers.deleteItem(db, req.params.id)
       .then(data => {
-        console.log('DELTED THIS ITEM')
-        res.redirect('/items')
-      })
+        console.log('DELTED THIS ITEM');
+        res.redirect('/items');
+      });
   });
 
   router.post("/:id/sold", (req, res) => {
     itemHelpers.soldItem(db, req.params.id)
       .then(data => {
         console.log('MARKED AS SOLD');
-        res.redirect('/items')
-      })
+        res.redirect('/items');
+      });
   });
 
 

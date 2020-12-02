@@ -33,7 +33,12 @@
     <% } %>
     <div class="ml-auto" id="loginID">
       <% if(userName) { %>
-      <%= userName %>
+        <p class="mb-0">Welcome <%= userName %>!</p>
+        <form class="form-inline" action="/users/logout" method="POST">
+          <div class="form-group mb-2">
+            <button type="submit" class="btn btn-outline-dark">Logout</button>
+          </div>
+        </form>
       <% } else { %>
       <p class="mb-0">Please Login</p>
       <% } %>

@@ -1,16 +1,19 @@
+let queryString = '';
+let queryParams = [];
+
 const fetchItems = (db) =>{
-  queryString = `SELECT * FROM items;`
+  queryString = `SELECT * FROM items;`;
   return db.query(queryString);
 };
 const minMaxFilter = (db, min, max) =>{
   queryParams = [
     min,
     max
-  ]
- queryString = `SELECT * FROM items
- WHERE price < $2 AND price > $1;`
+  ];
+  queryString = `SELECT * FROM items
+ WHERE price < $2 AND price > $1;`;
 
- return db.query(queryString, queryParams);
+  return db.query(queryString, queryParams);
 };
 
 const deleteItem = (db, itemId) => {
@@ -29,7 +32,7 @@ const soldItem = (db, itemId) => {
 };
 const fetchCardItems = (db) => {
   return db.query(`
-  SELECT title,date_listed,price,description,thumbnail_photo_url
+  SELECT id, title,date_listed,price,description,thumbnail_photo_url
   FROM items
   WHERE sold = 'N' AND deleted = 'N'
   Order by date_listed
@@ -46,7 +49,7 @@ const createdListing = (db, itemDetails) => {
   ];
   queryString = `INSERT INTO items (title, description, thumbnail_photo_url, price)
 VALUES ($1, $2, $3, $4)
-  RETURNING *;`
+  RETURNING *;`;
   return db.query(queryString, queryParams);
 };
 
@@ -54,7 +57,7 @@ const updateNumOfLikes = (db, itemId, incrementVal) => {
   queryParams = [
     itemId,
     incrementVal
-  ]
+  ];
   queryString =
   `UPDATE items
   SET number_of_likes = number_of_likes + $2
