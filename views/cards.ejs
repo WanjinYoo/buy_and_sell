@@ -1,10 +1,10 @@
 <div class="card-deck">
   <% for(let i = 0; i <= 2; i++) { %>
   <div class="card">
-    <img src="<%= cardItems[i].thumbnail_photo_url %>" class="card-img-top">
+    <img src="<%= cardItems[i].thumbnail_photo_url %>" class="card-img-top" style = "margin-left : 25%; width: 50%; height : 40%; object-fit: fit;">
     <div class="card-body border-info mb-3">
       <% if(userId) { %>
-        <a class="bg-secondary" href='/items/<%=cardItems[i].id%>'>     
+        <a class="bg-secondary" href='/items/<%=cardItems[i].id%>'>
         <h5 class="card-title"><%=cardItems[i].title %></h5>
       </a>
         <% } else { %>

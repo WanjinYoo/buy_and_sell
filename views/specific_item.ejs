@@ -34,15 +34,13 @@
   <%- include('header') %>
   <br />
   <div class="col d-flex justify-content-center">
-    <div class="card row text-center" style="width : 48%;">
-      <img class="card-img-top" style="margin-left : 25%; width: 50%; object-fit: fit;"
+    <div class="card row -center" style="width : 48%;">
+      <img class="card-img-top" style="margin-left : 25%; width: 50%; height:auto; object-fit: fit;"
         src="<%= items[0].thumbnail_photo_url %>">
       <div class="container">
         <h3 class="card-title"><%= items[0].title %></h3>
-        <h4>Price</h4>
-        <p>$<%= items[0].price %></p>
-        <h4>Description</h4>
-          <p class="card-text"><%= items[0].description %></p>
+        <h4>Price : $<%= items[0].price %></h4>
+        <h4>Description : <%= items[0].description %></h4>
           <h4>Likes: <%= items[0].number_of_likes %></h4>
 
             <% if (isAdmin) {%>
@@ -52,9 +50,9 @@
               action="/createMessage/<%=items[0].id%>/<%= messageUrl.userId %>/<%= messageUrl.userId %>" ,
               method="POST">
 
-              <label class='textareaContainer' for="message-text">Message Seller</label>
+              <h4 class='textareaContainer' for="message-text">Message Seller</h4>
               <textarea class='textarea' name="text" id="message-text"></textarea>
-              <div class="box-button d-flex justify-content-center">
+              <div class="box-button">
                 <button class="btn btn-secondary" type="submit">Submit</button>
               </div>
             </form>
