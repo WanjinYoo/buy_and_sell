@@ -2,7 +2,7 @@ let queryString = '';
 let queryParams = [];
 
 const fetchItems = (db) =>{
-  queryString = `SELECT * FROM items ORDER BY id;`;
+  queryString = `SELECT * FROM items ORDER BY id DESC;`;
   return db.query(queryString);
 };
 const minMaxFilter = (db, min, max) =>{
@@ -42,11 +42,12 @@ const fetchCardItems = (db) => {
 
 const createdListing = (db, itemDetails) => {
   queryParams = [
-    itemDetails[0],
-    itemDetails[3],
-    itemDetails[2],
-    itemDetails[1],
+    itemDetails.title,
+    itemDetails.description,
+    itemDetails.url,
+    itemDetails.price,
   ];
+
   queryString = `INSERT INTO items (title, description, thumbnail_photo_url, price)
 VALUES ($1, $2, $3, $4)
   RETURNING *;`;
@@ -69,10 +70,10 @@ const updateNumOfLikes = (db, itemId, incrementVal) => {
 const getUserFavouriteItems = (db,userId) => {
   queryParams = [userId];
   queryString = `
-  SELECT items.* 
-  FROM items 
-  JOIN user_favourites ON items.id = user_favourites.item_id 
-  WHERE user_favourites.user_id = $1 
+  SELECT items.*
+  FROM items
+  JOIN user_favourites ON items.id = user_favourites.item_id
+  WHERE user_favourites.user_id = $1
   AND items.sold = 'N'
   AND items.deleted = 'N'
   ORDER BY items.id;`;

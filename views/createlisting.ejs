@@ -8,7 +8,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Conversations TEMP</title>
+  <title>Create Listing</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="">
@@ -37,23 +37,30 @@
     <![endif]-->
     <%- include('header') %>
     <form class="message-form" action="/items/created", method="POST">
+      <label for="title">
+        <h5>Title</h5>
+        <input type="text" name="title" placeholder="title">
+      </label>
+      <br>
+      <label for="price">
+        <h5>Price</h5>
+        <input type="text" name="price" placeholder="Price">
+      </label>
+      <br>
+      <label for="url">
+        <h5>URL</h5>
+        <input type="text" maxlength="254"  name="url" placeholder="URL">
+      </label>
+      <br>
+      <label for="description">
+        <h5>Description</h5>
+        <textarea name="description" id="" cols="30" rows="5"></textarea>
+      </label>
 
-      <label for="message-text">Title</label>
-      <br>
-      <textarea name="text" id="message-text" rows="1"></textarea>
-      <br>
-      <label for="message-text">Price</label>
-      <br>
-      <textarea name="text" id="message-text" rows="1"></textarea>
-      <br>
-      <label for="message-text">URL</label>
-      <br>
-      <textarea name="text" id="message-text" rows="1"></textarea>
-      <br>
-      <label for="message-text">Description</label>
-      <br>
-      <textarea name="text" id="message-text" rows="5"></textarea>
-      <br>
+
+
+
+
 
       <div>
         <div>

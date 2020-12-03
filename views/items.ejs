@@ -43,20 +43,21 @@
   <div class="d-flex align-items-center flex-column border border-secondary pb-2">
   <h3>SortBy</h3>
   <a href="?sort=price-asc">Price - Low-High</a>
-  <a href="?sort=price-desc">Price - Low-High</a>
+  <a href="?sort=price-desc">Price - High-Low</a>
+  <a href="?sort=date-new">Date - Newest First</a>
+  <a href="?sort=date-old">Date - Oldest First</a>
+  <a href="?sort=favorites">Favorites -- STRETCH</a>
   <form class="d-flex" action="/items/priceFilter" method="POST">
-    <label for="min"></label>
-    <textarea name="min" placeholder="MIN price" cols="10" rows="1"></textarea>
-    <label for="max"></label>
-    <textarea name="max" id="" cols="10" placeholder="MAX price" rows="1"></textarea>
+    <label for="min">
+      <input type="text" name="min" placeholder="MIN Price">
+    </label>
+    <label for="max">
+      <input type="text" name="max" placeholder="MAX Price">
+    </label>
     <button class="btn btn-secondary p-1" type="submit">
       search
     </button>
   </form>
-  <br>
-  <a href="?sort=date">Date</a>
-  <br>
-  <a href="?sort=favorites">Favorites</a>
   </div>
 
 
