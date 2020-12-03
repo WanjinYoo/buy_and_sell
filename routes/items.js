@@ -29,30 +29,10 @@ module.exports = (db) => {
               items = data.rows;
             }
 
-<<<<<<< HEAD
-              userFavHelpers.fetchUserFavourites(db, userId)
-                .then(data => {
-                  let itemsArray = data.rows.map(function(obj) { return obj.item_id; });
-                  templateVars = {
-                    items,
-                    userName,
-                    isAdmin,
-                    itemsArray,
-                  };
-                  res.render('items', templateVars);
-                })
-              })
-            })
-                .catch(err => {
-                  res
-                  .status(500)
-                  .json({ error: err.message });
-=======
             userFavHelpers.fetchUserFavourites(db, userId)
               .then(data => {
                 let itemsArray = data.rows.map(function(obj) {
                   return obj.item_id;
->>>>>>> db1bde112e45c98df745bce501ba7ec753a3b497
                 });
                 const templateVars = {
                   items,
@@ -86,19 +66,6 @@ module.exports = (db) => {
                   return a.price - b.price;
                 });
                 userFavHelpers.fetchUserFavourites(db, userId)
-<<<<<<< HEAD
-                .then(data => {
-                  let itemsArray = data.rows.map(function(obj) { return obj.item_id; });
-                  templateVars = {
-                    items,
-                    userName,
-                    isAdmin,
-                    itemsArray
-                  };
-                  res.render('items', templateVars);
-                })
-              })
-=======
                   .then(data => {
                     let itemsArray = data.rows.map(function(obj) {
                       return obj.item_id;
@@ -112,7 +79,6 @@ module.exports = (db) => {
                     res.render('items', templateVars);
                   });
               });
->>>>>>> db1bde112e45c98df745bce501ba7ec753a3b497
           })
           .catch(err => {
             res

@@ -59,78 +59,6 @@
   <a href="?sort=favorites">Favorites</a>
   </div>
 
-<<<<<<< HEAD
-    <h3>SortBy</h3>
-    <a href="?sort=price-asc">Price - Low-High</a>
-    <a href="?sort=price-desc">Price - High-Low</a>
-
-
-
-    <form action="/items/priceFilter" method="POST">
-        <textarea name="min" id="" placeholder="MIN price" cols="10" rows="1"></textarea>
-        <textarea name="max" id="" cols="10" placeholder="MAX price" rows="1"></textarea>
-      <button type="submit">
-        search
-      </button>
-    </form>
-    <br>
-    <a href="?sort=date">Date</a>
-    <br>
-    <a href="?sort=favorites">Favorites</a>
-
-
-    <% for (const item of items) {%>
-
-        <% if (!(item.sold || item.deleted)) {%>
-          <div class="item-border">
-            <div class="inner-content">
-              <img class="<%= item.id %>" style="width: 15%;" src=<%=item.thumbnail_photo_url%> alt="">
-              <a href='/items/<%=item.id%>'>
-                <h6><%=item.title%></h6>
-              </a>
-              <h5 class="title"><%= item.description.substring(0, 80) %> ... </h5>
-            </div>
-            <div class="test">
-              <% if (isAdmin) {%>
-                <%} else if(itemsArray.includes(item.id)) {%>
-                  <div class="fav">
-                    <img style="width: 15px;" src="https://www.flaticon.com/svg/static/icons/svg/786/786432.svg" alt="">
-                    <form action="/items/favs/<%= item.id %>" method="POST">
-                      <button style="color: blue;">
-                        Favourite
-                      </button>
-                    </form>
-                </div>
-                  <%} else {%>
-                    <div class="fav">
-                      <img style="width: 15px;" src="https://www.flaticon.com/svg/static/icons/svg/786/786432.svg" alt="">
-                      <form action="/items/favs/<%= item.id %>" method="POST">
-                        <button>
-                          Favourite
-                        </button>
-                      </form>
-                  </div>
-                  <%}%>
-                    <h6 class="ajaxTest" id="<%= item.id %>"><%= moment(item.date_listed).startOf('hour').fromNow() %></h6>
-                    <h6>Price: $<%= item.price %></h6>
-                    <h6 class="likes<%=item.id%>">Likes: <%= item.number_of_likes %></h6>
-                  </div>
-                  <div>
-                  </div>
-            </div>
-            <% if (isAdmin) {%>
-            <div>
-              <form action="/items/<%=item.id%>/delete", method="POST">
-                <button type="submit">
-                  Delete
-                </button>
-              </form>
-              <form action="/items/<%=item.id%>/sold", method="POST">
-                <button type="submit">
-                  Mark As Sold
-                </button>
-              </form>
-=======
 
   <ul class="list-group">
   <% for (const item of items) {%>
@@ -156,7 +84,6 @@
                     Favourite
                   </button>
                 </form>
->>>>>>> db1bde112e45c98df745bce501ba7ec753a3b497
             </div>
               <%} else {%>
                 <div class="fav">
