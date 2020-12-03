@@ -1,6 +1,6 @@
 <header>
   <!-- bootstrap Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-secondary">
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-secondary mb-5">
   <a class="navbar-brand" href="#">BuyAndSell</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
     aria-expanded="false" aria-label="Toggle navigation">
@@ -31,9 +31,10 @@
       </li>
     </ul>
     <% } %>
-    <div class="ml-auto" id="loginID">
+
+    <div class="ml-auto d-flex" id="loginID">
       <% if(userName) { %>
-        <p class="mb-0">Welcome <%= userName %>!</p>
+        <p class="mr-3 pt-2">Welcome <%= userName %>!</p>
         <form class="form-inline" action="/users/logout" method="POST">
           <div class="form-group mb-2">
             <button type="submit" class="btn btn-outline-dark">Logout</button>
@@ -45,3 +46,4 @@
     </div>
 </nav>
 </header>
+

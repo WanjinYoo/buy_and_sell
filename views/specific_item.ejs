@@ -38,11 +38,12 @@
   <%- include('header') %>
   <br/>
   <div class="col d-flex justify-content-center">
-  <div class="card" style="heigh: 45%; height: 100%; object-fit: fit;">
-  <img class="card-img-top" src="<%= items[0].thumbnail_photo_url %>">
+  <div class="card row text-center" style="width : 48%;">
+  <img class="card-img-top" style="margin-left : 25%; width: 50%; object-fit: fit;" src="<%= items[0].thumbnail_photo_url %>">
   <div class="container">
   <h1 class="card-title"><%= items[0].title %></h1>
-  <h4>Price: $<%= items[0].price %></h1>
+  <h4>Price</h4>
+  <p>$<%= items[0].price %></p>
   <h4>Description</h1>
   <p class="card-text"><%= items[0].description %></p>
   <h4>Likes: <%= items[0].number_of_likes %></h1>
@@ -54,10 +55,8 @@
 
     <label class='textareaContainer' for="message-text">Message Seller</label>
     <textarea class='textarea' name="text" id="message-text"></textarea>
-    <div class="box-button">
-      <div>
-        <button class="message-button" type="submit">Submit</button>
-      </div>
+    <div class="box-button d-flex justify-content-center">
+        <button class="btn btn-secondary" type="submit">Submit</button>
     </div>
   </form>
   <br/>
