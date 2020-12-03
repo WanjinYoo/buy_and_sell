@@ -9,6 +9,7 @@ const sass       = require("node-sass-middleware");
 const app        = express();
 const morgan     = require('morgan');
 const path       = require('path');
+const bodyParser = require('body-parser');
 const cookieSession = require('cookie-session');
 // PG database client/connection setup
 const { Pool } = require('pg');
@@ -18,6 +19,7 @@ db.connect();
 
 const moment = require("moment");
 
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use((req, res, next)=>{
   res.locals.moment = moment;
   next();

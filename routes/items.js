@@ -16,42 +16,43 @@ module.exports = (db) => {
         const isAdmin = data.rows[0].is_admin;
         itemHelpers.fetchItems(db)
           .then(data => {
-            let items = []
+            let items = [];
             if (req.query.sort === 'price-asc') {
-              items = data.rows.sort(function (a, b) {
+              items = data.rows.sort(function(a, b) {
                 return a.price - b.price;
               });
             } else if (req.query.sort === 'price-desc') {
-              items = data.rows.sort(function (a, b) {
+              items = data.rows.sort(function(a, b) {
                 return b.price - a.price;
               });
             } else {
               items = data.rows;
             }
 
-              userFavHelpers.fetchUserFavourites(db, userId)
-                .then(data => {
-                  let itemsArray = data.rows.map(function(obj) { return obj.item_id; });
-                  templateVars = {
-                    items,
-                    userName,
-                    isAdmin,
-                    itemsArray,
-                  };
-                  res.render('items', templateVars);
-
-                })
-              })
-            })
-                .catch(err => {
-                  res
-                  .status(500)
-                  .json({ error: err.message });
+            userFavHelpers.fetchUserFavourites(db, userId)
+              .then(data => {
+                let itemsArray = data.rows.map(function(obj) {
+                  return obj.item_id;
                 });
+                const templateVars = {
+                  items,
+                  userName,
+                  isAdmin,
+                  itemsArray,
+                };
+                res.render('items', templateVars);
+
+              });
+          });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
   });
 
   router.post("/priceFilter", (req, res) => {
-
     const userId = req.session['userId'];
     userHelpers.getUserById(db, userId)
       .then(data => {
@@ -61,16 +62,23 @@ module.exports = (db) => {
           .then(data => {
             itemHelpers.minMaxFilter(db, req.body.min, req.body.max)
               .then(data => {
-                const items = data.rows.sort(function (a, b) {
+                const items = data.rows.sort(function(a, b) {
                   return a.price - b.price;
                 });
-                templateVars = {
-                  items,
-                  userName,
-                  isAdmin
-                };
-                res.render('items', templateVars);
-              })
+                userFavHelpers.fetchUserFavourites(db, userId)
+                  .then(data => {
+                    let itemsArray = data.rows.map(function(obj) {
+                      return obj.item_id;
+                    });
+                    const templateVars = {
+                      items,
+                      userName,
+                      isAdmin,
+                      itemsArray
+                    };
+                    res.render('items', templateVars);
+                  });
+              });
           })
           .catch(err => {
             res
