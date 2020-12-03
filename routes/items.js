@@ -26,10 +26,10 @@ module.exports = (db) => {
                 return b.price - a.price;
               });
             } else if (req.query.sort === 'date-new') {
-            items = data.rows.sort(function(a, b) {
-              return b.date_listed - a.date_listed;
-            });
-            } else if(req.query.sort === 'date-old') {
+              items = data.rows.sort(function(a, b) {
+                return b.date_listed - a.date_listed;
+              });
+            } else if (req.query.sort === 'date-old') {
               items = data.rows.sort(function(a, b) {
                 return a.date_listed - b.date_listed;
               });
@@ -100,7 +100,7 @@ module.exports = (db) => {
 
   // userFavHelpers.fetchTotalFavourites(db, itemId)
   // .then(data => {
-    // res.json(data.rows)
+  // res.json(data.rows)
   // })
 
 
@@ -191,22 +191,25 @@ module.exports = (db) => {
   });
 
   router.post("/created", (req, res) => {
-    const missing = 'false';
-    const templateVars = {
-      missing
-    }
-    for (const elements in req.body) {
-      console.log(req.body[elements].length, elements);
-      if (req.body[elements].length === 0) {
-        res.redirect("/items/createlisting")
+    const bod = req.body;
+    const title = bod.title.length;
+    const price = bod.price.length;
+    const url = bod.url.length;
+    const desc = bod.description.length;
+    const content = [title,price,url,desc];
+    // Checks to see if the length of ANY input is 0 then stops and redirects the page
+    for (const len of content) {
+      if (len === 0) {
+        return res.redirect("/items/createlisting");
       }
     }
-    // itemHelpers.createdListing(db, req.body)
-    //   .then(data => {
-    //     const newItem = data.rows[0].id;
-    //     res.redirect(`/items/${newItem}`);
-    //   });
-    // res.redirect("/items/createlisting")
+    // if all are filled out properly then we create listing and send to specific page to see how it looks
+    itemHelpers.createdListing(db, req.body)
+      .then(data => {
+        const newItem = data.rows[0].id;
+        console.log(data.rows[0]);
+        res.redirect(`/items/${newItem}`);
+      });
   });
 
 
