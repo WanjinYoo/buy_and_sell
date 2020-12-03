@@ -10,6 +10,7 @@ const app        = express();
 const morgan     = require('morgan');
 const path       = require('path');
 const cookieSession = require('cookie-session');
+const bodyParser = require('body-parser');
 // PG database client/connection setup
 const { Pool } = require('pg');
 const dbParams = require('./lib/db.js');
@@ -17,6 +18,8 @@ const db = new Pool(dbParams);
 db.connect();
 
 const moment = require("moment");
+
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use((req, res, next)=>{
   res.locals.moment = moment;

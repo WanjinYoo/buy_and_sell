@@ -63,7 +63,6 @@ const updateNumOfLikes = (db, itemId, incrementVal) => {
   SET number_of_likes = number_of_likes + $2
   WHERE id = $1;`;
 
-  console.log(queryString);
   return db.query(queryString, queryParams);
 };
 

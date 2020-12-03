@@ -27,6 +27,17 @@ const fetchUserFavourites = (db, userId) => {
 
   return db.query(queryString, queryParams);
 }
+const fetchTotalFavourites = (db, itemId) => {
+  queryParams = [
+    itemId
+  ]
+  queryString = `SELECT item_id, COUNT(user_id)
+  FROM user_favourites
+  WHERE item_id = $1
+  GROUP BY item_id;`
+
+  return db.query(queryString, queryParams);
+};
 
 const deleteFavourites = (db, userId, itemId) => {
   queryParams = [
@@ -57,4 +68,5 @@ module.exports = {
   deleteFavourites,
   fetchFavs,
   fetchUserFavourites,
+  fetchTotalFavourites,
 }

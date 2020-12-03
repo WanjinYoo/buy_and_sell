@@ -39,7 +39,6 @@ module.exports = (db) => {
                     itemsArray,
                   };
                   res.render('items', templateVars);
-
                 })
               })
             })
@@ -51,7 +50,6 @@ module.exports = (db) => {
   });
 
   router.post("/priceFilter", (req, res) => {
-
     const userId = req.session['userId'];
     userHelpers.getUserById(db, userId)
       .then(data => {
@@ -64,12 +62,17 @@ module.exports = (db) => {
                 const items = data.rows.sort(function (a, b) {
                   return a.price - b.price;
                 });
-                templateVars = {
-                  items,
-                  userName,
-                  isAdmin
-                };
-                res.render('items', templateVars);
+                userFavHelpers.fetchUserFavourites(db, userId)
+                .then(data => {
+                  let itemsArray = data.rows.map(function(obj) { return obj.item_id; });
+                  templateVars = {
+                    items,
+                    userName,
+                    isAdmin,
+                    itemsArray
+                  };
+                  res.render('items', templateVars);
+                })
               })
           })
           .catch(err => {
@@ -78,6 +81,22 @@ module.exports = (db) => {
               .json({ error: err.message });
           });
       });
+  });
+
+
+  // userFavHelpers.fetchTotalFavourites(db, itemId)
+  // .then(data => {
+    // res.json(data.rows)
+  // })
+
+
+  router.post("/ajaxFavs/:id", (req, res) => {
+    // const userId = req.session['userId'];
+    // const itemId = req.params.id;
+    // userFavHelpers.hasLiked(db, userId, itemId)
+    // .then(data => {
+    //   console.log(data.rows, "=-=-=--=--");
+    // })
   });
 
 
@@ -90,9 +109,10 @@ module.exports = (db) => {
         if (data.rows.length === 0) {
           userFavHelpers.addToFavourites(db, userId, itemId)
             .then(data => {
+              console.log(data);
               itemHelpers.updateNumOfLikes(db, itemId, +1)
                 .then(data => {
-                  console.log('Likes Updated');
+                  // no data this is an update
                 });
             });
         } else {
@@ -156,12 +176,13 @@ module.exports = (db) => {
   });
 
   router.post("/created", (req, res) => {
+    console.log(req.body);
 
-    itemHelpers.createdListing(db, req.body.text)
-      .then(data => {
-        const newItem = data.rows[0].id;
-        res.redirect(`/items/${newItem}`);
-      });
+    // itemHelpers.createdListing(db, req.body.text)
+    //   .then(data => {
+    //     const newItem = data.rows[0].id;
+    //     res.redirect(`/items/${newItem}`);
+    //   });
 
   });
 

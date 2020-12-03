@@ -43,10 +43,13 @@
 
     <h3>SortBy</h3>
     <a href="?sort=price-asc">Price - Low-High</a>
-    <a href="?sort=price-desc">Price - Low-High</a>
+    <a href="?sort=price-desc">Price - High-Low</a>
+
+
+
     <form action="/items/priceFilter" method="POST">
-      <textarea class="min-price" name="min" id="" placeholder="MIN price" cols="10" rows="1"></textarea>
-      <textarea class="max-price" name="max" id="" cols="10" placeholder="MAX price" rows="1"></textarea>
+        <textarea name="min" id="" placeholder="MIN price" cols="10" rows="1"></textarea>
+        <textarea name="max" id="" cols="10" placeholder="MAX price" rows="1"></textarea>
       <button type="submit">
         search
       </button>
@@ -55,6 +58,8 @@
     <a href="?sort=date">Date</a>
     <br>
     <a href="?sort=favorites">Favorites</a>
+
+
     <% for (const item of items) {%>
 
         <% if (!(item.sold || item.deleted)) {%>
@@ -87,9 +92,9 @@
                       </form>
                   </div>
                   <%}%>
-                    <h6><%= moment(item.date_listed).startOf('hour').fromNow() %></h6>
+                    <h6 class="ajaxTest" id="<%= item.id %>"><%= moment(item.date_listed).startOf('hour').fromNow() %></h6>
                     <h6>Price: $<%= item.price %></h6>
-                    <h6>Likes: <%= item.number_of_likes %></h6>
+                    <h6 class="likes<%=item.id%>">Likes: <%= item.number_of_likes %></h6>
                   </div>
                   <div>
                   </div>

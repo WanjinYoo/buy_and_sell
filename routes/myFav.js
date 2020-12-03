@@ -28,7 +28,7 @@ module.exports = (db) => {
                     isAdmin: is_admin,
                     itemsArray,
                   };
-                  res.render('items', templateVars);
+                  res.render('favorites', templateVars);
                 })
       })
       .catch(err => {
