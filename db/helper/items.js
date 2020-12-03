@@ -2,16 +2,16 @@ let queryString = '';
 let queryParams = [];
 
 const fetchItems = (db) =>{
-  queryString = `SELECT * FROM items ORDER BY id;`
+  queryString = `SELECT * FROM items ORDER BY id;`;
   return db.query(queryString);
 };
 const minMaxFilter = (db, min, max) =>{
   queryParams = [
     min,
     max
-  ]
- queryString = `SELECT * FROM items
- WHERE price <= $2 AND price >= $1;`
+  ];
+  queryString = `SELECT * FROM items
+ WHERE price <= $2 AND price >= $1;`;
 
   return db.query(queryString, queryParams);
 };
@@ -66,6 +66,18 @@ const updateNumOfLikes = (db, itemId, incrementVal) => {
   return db.query(queryString, queryParams);
 };
 
+const getUserFavouriteItems = (db,userId) => {
+  queryParams = [userId];
+  queryString = `
+  SELECT items.* 
+  FROM items 
+  JOIN user_favourites ON items.id = user_favourites.item_id 
+  WHERE user_favourites.user_id = $1 
+  AND items.sold = 'N'
+  AND items.deleted = 'N'
+  ORDER BY items.id;`;
+  return db.query(queryString, queryParams);
+};
 
 module.exports = {
   deleteItem,
@@ -75,4 +87,5 @@ module.exports = {
   updateNumOfLikes,
   fetchItems,
   minMaxFilter,
+  getUserFavouriteItems,
 };

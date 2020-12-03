@@ -36,12 +36,16 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
   <%- include('header') %>
-  <h1><%= items[0].title %></h1>
-  <h1>Price: $<%= items[0].price %></h1>
-  <img style="width: 15%;" src="<%= items[0].thumbnail_photo_url %>" alt="">
-  <h1>Description</h1>
-  <h1><%= items[0].description %></h1>
-  <h1>Likes: <%= items[0].number_of_likes %></h1>
+  <br/>
+  <div class="col d-flex justify-content-center">
+  <div class="card" style="heigh: 45%; height: 100%; object-fit: fit;">
+  <img class="card-img-top" src="<%= items[0].thumbnail_photo_url %>">
+  <div class="container">
+  <h1 class="card-title"><%= items[0].title %></h1>
+  <h4>Price: $<%= items[0].price %></h1>
+  <h4>Description</h1>
+  <p class="card-text"><%= items[0].description %></p>
+  <h4>Likes: <%= items[0].number_of_likes %></h1>
 
 <% if (isAdmin) {%>
 
@@ -56,7 +60,11 @@
       </div>
     </div>
   </form>
+  <br/>
 <%}%>
+</div>
+</div>
+</div>
 </body>
 </html>
 
