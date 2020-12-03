@@ -38,7 +38,7 @@ module.exports = (db) => {
               items = data.rows;
             }
 
-            userFavHelpers.fetchUserFavourites(db, userId)
+            userFavHelpers.getAllUserFavouritesById(db, userId)
               .then(data => {
                 let itemsArray = data.rows.map(function(obj) {
                   return obj.item_id;
@@ -74,7 +74,7 @@ module.exports = (db) => {
                 const items = data.rows.sort(function(a, b) {
                   return a.price - b.price;
                 });
-                userFavHelpers.fetchUserFavourites(db, userId)
+                userFavHelpers.getAllUserFavouritesById(db, userId)
                   .then(data => {
                     let itemsArray = data.rows.map(function(obj) {
                       return obj.item_id;

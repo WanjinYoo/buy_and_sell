@@ -25,10 +25,6 @@
 
   <!-- Local Js Files -->
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-  <script type="text/javascript" src="/public/scripts/home.js"></script>
-  <script type="text/javascript" src="/public/scripts/myFavorites.js"></script>
-  <script type="text/javascript" src="/public/scripts/items.js"></script>
-
 </head>
 
 <body>
@@ -39,22 +35,22 @@
     <form class="message-form" action="/items/created", method="POST">
       <label for="title">
         <h5>Title</h5>
-        <input type="text" name="title" placeholder="title">
+        <input class="form-control" minlength= "10"type="text" name="title" placeholder="title">
       </label>
       <br>
       <label for="price">
         <h5>Price</h5>
-        <input type="text" name="price" placeholder="Price">
+        <input class="form-control" type="number" min="1" step="any" name="price" placeholder="Price">
       </label>
       <br>
       <label for="url">
         <h5>URL</h5>
-        <input type="text" maxlength="254"  name="url" placeholder="URL">
+        <input class="form-control" type="url" maxlength="254"  name="url" placeholder="URL">
       </label>
       <br>
       <label for="description">
         <h5>Description</h5>
-        <textarea name="description" id="" cols="30" rows="5"></textarea>
+        <textarea class="form-control" name="description" id="" cols="30" rows="5"></textarea>
       </label>
 
 

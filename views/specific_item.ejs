@@ -25,10 +25,6 @@
 
   <!-- Local Js Files -->
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-  <script type="text/javascript" src="/public/scripts/home.js"></script>
-  <script type="text/javascript" src="/public/scripts/myFavorites.js"></script>
-  <script type="text/javascript" src="/public/scripts/items.js"></script>
-
 </head>
 
 <body>
@@ -36,38 +32,36 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
   <%- include('header') %>
-  <br/>
+  <br />
   <div class="col d-flex justify-content-center">
-  <div class="card row text-center" style="width : 48%;">
-  <img class="card-img-top" style="margin-left : 25%; width: 50%; object-fit: fit;" src="<%= items[0].thumbnail_photo_url %>">
-  <div class="container">
-  <h1 class="card-title"><%= items[0].title %></h1>
-  <h4>Price</h4>
-  <p>$<%= items[0].price %></p>
-  <h4>Description</h1>
-  <p class="card-text"><%= items[0].description %></p>
-  <h4>Likes: <%= items[0].number_of_likes %></h1>
+    <div class="card row text-center" style="width : 48%;">
+      <img class="card-img-top" style="margin-left : 25%; width: 50%; object-fit: fit;"
+        src="<%= items[0].thumbnail_photo_url %>">
+      <div class="container">
+        <h3 class="card-title"><%= items[0].title %></h3>
+        <h4>Price</h4>
+        <p>$<%= items[0].price %></p>
+        <h4>Description</h4>
+          <p class="card-text"><%= items[0].description %></p>
+          <h4>Likes: <%= items[0].number_of_likes %></h4>
 
-<% if (isAdmin) {%>
+            <% if (isAdmin) {%>
 
-<%} else {%>
-  <form class="message-form" action="/createMessage/<%=items[0].id%>/<%= messageUrl.userId %>/<%= messageUrl.userId %>", method="POST">
+            <%} else {%>
+            <form class="message-form"
+              action="/createMessage/<%=items[0].id%>/<%= messageUrl.userId %>/<%= messageUrl.userId %>" ,
+              method="POST">
 
-    <label class='textareaContainer' for="message-text">Message Seller</label>
-    <textarea class='textarea' name="text" id="message-text"></textarea>
-    <div class="box-button d-flex justify-content-center">
-        <button class="btn btn-secondary" type="submit">Submit</button>
+              <label class='textareaContainer' for="message-text">Message Seller</label>
+              <textarea class='textarea' name="text" id="message-text"></textarea>
+              <div class="box-button d-flex justify-content-center">
+                <button class="btn btn-secondary" type="submit">Submit</button>
+              </div>
+            </form>
+            <br />
+            <% } %>
+      </div>
     </div>
-  </form>
-  <br/>
-<%}%>
-</div>
-</div>
-</div>
+  </div>
 </body>
 </html>
-
-
-
-
-<!-- [{"id":1,"title":"iPhone 6","description":"Awesome iPhone 6, works fine","thumbnail_photo_url":"https://images.pexels.com/photos/2086676/pexels-photo-2086676.jpeg?auto=compress&amp;cs=tinysrgb&amp;h=350","date_listed":"2018-09-26T00:00:00.000Z","price":150,"number_of_likes":0,"sold":false,"sold_to":null,"sold_date":null,"deleted":false,"deleted_reason":null}] -->

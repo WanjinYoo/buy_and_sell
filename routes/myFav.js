@@ -15,7 +15,7 @@ module.exports = (db) => {
         itemHelpers.getUserFavouriteItems(db, userId)
           .then(data => {
             const items = data.rows;
-            userFavHelpers.fetchUserFavourites(db, userId)
+            userFavHelpers.getAllUserFavouritesById(db, userId)
               .then(data =>{
                 let itemsArray = data.rows.map(function(obj) {
                   return obj.item_id;

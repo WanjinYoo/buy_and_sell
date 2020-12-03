@@ -30,9 +30,6 @@
 
   <!-- Local Js Files -->
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-  <script type="text/javascript" src="/public/scripts/home.js"></script>
-  <script type="text/javascript" src="/public/scripts/myFavorites.js"></script>
-  <script type="text/javascript" src="/public/scripts/items.js"></script>
 </head>
 
 <body>
@@ -42,6 +39,9 @@
   <%- include('header') %>
   <div class='conversations'>
     <div class="item-id">
+      <% if (!groups[0]) {%>
+        <h1>You have no conversations with the Seller</h1>
+        <% } else { %>
       <% for(const group of groups) { %>
       </br>
       <div class='message-box'>
@@ -79,7 +79,9 @@
           </form>
 
         </div>
-        <%}%>
+        <% } %>
+        <% } %>
+
         </div>
       </div>
       <script src="" async defer></script>

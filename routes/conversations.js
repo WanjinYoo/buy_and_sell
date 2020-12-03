@@ -38,7 +38,12 @@ module.exports = function(db) {
         msgHelpers.getAllConversationsByUser(db, userId, isAdmin)
           .then(data => {
             const messages = data.rows;
-            const messageGroups = assembleMessageGroups(messages);
+            let messageGroups = [];
+            if (data.rows.length > 0) {
+              messageGroups = assembleMessageGroups(messages);
+            } else {
+              messageGroups = [false];
+            }
             const templateVars = {
               groups: messageGroups,
               userName: userName,

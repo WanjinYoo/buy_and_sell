@@ -31,14 +31,14 @@ const getAllConversationsByUser = (db, userId, isAdmin) => {
 
 const addMsgFromBuyer = (db, messageObject) => {
   initQueryVars(queryString, queryParams);
-  // console.log(messageObject, 'MESSAGE OBJECT TO WRITE...');
   queryParams = [
     messageObject.userId,
     messageObject.buyerId,
     messageObject.itemId,
     messageObject.message
   ];
-  queryString = `INSERT INTO conversations (from_id, buyer_id, item_id, message)
+  queryString = `
+  INSERT INTO conversations (from_id, buyer_id, item_id, message)
   VALUES ($1, $2, $3, $4) RETURNING *;`;
   return db.query(queryString, queryParams);
 };
