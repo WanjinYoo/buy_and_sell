@@ -21,7 +21,9 @@ VALUES ('iPhone 6','This phone is in excellent condition. Zero scratches (was al
 Google phones are fully unlocked, and near Mint Condition. Phone and USB charger.','https://images.pexels.com/photos/2121121/pexels-photo-2121121.jpeg?auto=compress&amp;cs=tinysrgb&amp;h=350','2018-09-26',250),
 ('Asus MB','Powered by 2nd generation AMD Ryzen AM4 processors to maximize connectivity and speed with dual NVMe M.2, USB 3.1 Gen2, gigabit LAN and up to 64GB of DDR4 (3200 MHz)','https://images.pexels.com/photos/2121121/pexels-photo-2121121.jpeg?auto=compress&amp;cs=tinysrgb&amp;h=350','2018-09-26',450),
 ('Intel i9-9800','Designed for content creators and freelancers, Intel Core X-series processors put the power & convenience of a full studio in your PC. Quickly and simultaneously record, edit, and render with up to 4.8GHz thanks to the updated Intel','https://images.pexels.com/photos/2121121/pexels-photo-2121121.jpeg?auto=compress&amp;cs=tinysrgb&amp;h=350','2018-09-26',715),
+
 ('AMD processor','AMD RYZEN 7 3800X 8-Core 3.9 GHz (4.5 GHz Max Boost) Socket AM4 105W 100-100000025BOX Desktop Processor','https://images.pexels.com/photos/2121121/pexels-photo-2121121.jpeg?auto=compress&amp;cs=tinysrgb&amp;h=350','2018-09-26',110),
+
 ('Logitech 400','Maintain ultra-durable strength while achieve a feather-light weight
 Braided cable is ultra-flexible and super lightweight
 G-Skates - 100% pure Virgin PTFE with rounded edge','https://images.pexels.com/photos/2121121/pexels-photo-2121121.jpeg?auto=compress&amp;cs=tinysrgb&amp;h=350','2018-09-26',75),
