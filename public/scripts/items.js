@@ -1,6 +1,7 @@
 $(() => {
   const createItemElement = (item, isAdmin, itemsArray) => {
     let $item = `
+
     <li class="list-group-item d-flex border border-secondary">
           <div style="width: 23%;">
           <img class="ml-3" style="width: 50%; object-fit: fill;" src="${item.thumbnail_photo_url}">
@@ -59,6 +60,7 @@ $(() => {
     `
     }
     $item += `
+
 </li>
     `
     $(".list-group").append($item);

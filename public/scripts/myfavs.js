@@ -35,7 +35,10 @@ $(() => {
     $item += `
               <h6 class = "mt-3"> ${getDate(item.date_listed)}</h6>
               <h6 class = "mt-3">Price: $${item.price}</h6>
+              <div class="like-container">
+              <img class="like-img" style="width: 25px;" src="https://www.flaticon.com/svg/static/icons/svg/1029/1029132.svg" alt="">
               <h6 class = "mt-3">Likes: ${item.number_of_likes}</h6>
+              </div>
             </div>
               `
     if (isAdmin) {

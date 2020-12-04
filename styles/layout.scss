@@ -1,21 +1,39 @@
-// See: https://sass-lang.com/
-
 body {
+  @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+  .list-group {
+    width: 50%;
+    margin: 0 25%;
+  }
   padding-top: 60px;
   input {
     text-align: center;
   }
-  .favourited{
+
+  .favourited {
     color: white !important;
   }
-  .min-price, .max-price {
+  .min-price,
+  .max-price {
+    background: linear-gradient(to bottom, #b9aaaac2 5%, #ffffff 100%);
     width: 100px;
     resize: none;
-    border: .5px black solid;
+    border: 0.5px black solid;
   }
-
+  .max-price,
+  .min-price {
+    width: 150px;
+  }
+  .sort-options {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+  .sort-options a {
+    margin: 0 10px;
+  }
   h1 {
-    color: #244751;
+    color: #2b2c2c;
   }
   .item-border {
     margin: 0 20%;
@@ -40,6 +58,7 @@ body {
     h6 {
       font-size: 30px;
       text-align: center;
+      font-family: Poppins;
     }
     h5 {
       overflow-wrap: anywhere;
@@ -55,16 +74,29 @@ body {
     justify-content: space-evenly;
     margin-bottom: 3%;
   }
+  .title {
+    font-family: Poppins;
+  }
   .test {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
   }
+
   .fav {
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-direction: column;
+  }
+  .navbar {
+    background: linear-gradient(to bottom, #63b8ee 5%, #468ccf 100%);
+  }
+  .search-form {
+    align-items: baseline;
+  }
+  .filter-btn {
+    background: linear-gradient(to bottom, #63b8ee 5%, #468ccf 100%);
   }
 
   .card {
@@ -72,7 +104,7 @@ body {
       height: 15rem;
     }
   }
-  .message-box{
+  .message-box {
     width: 80%;
     margin: 1rem auto 2rem auto;
     border: 1px solid black;
@@ -89,19 +121,19 @@ body {
     justify-content: flex-start;
     align-items: center;
   }
-  .date-from{
-    display:flex;
+  .date-from {
+    display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
   }
-  .msg-date{
+  .msg-date {
     margin-right: 2rem;
     margin-left: 1rem;
   }
-  .msg-from{
+  .msg-from {
     width: 70px;
   }
-  .message{
+  .message {
     margin-left: 2em;
     text-align: left;
     // border: 1px solid black;
@@ -120,56 +152,55 @@ body {
     display: block;
     // border: 3px solid #38c;
     padding: 10px;
-    }
+  }
   .textarea {
     background-color: #f4f1ec;
     border-bottom: 5px solid;
     width: 100%;
     outline: none;
   }
-  .box-button{
+  .box-button {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
   }
   .message-button {
-    background-color: #4056A1;
+    background-color: #4056a1;
     // font-family: 'Bungee', cursive;
-    color: #FFFFFF;
+    color: #ffffff;
   }
   .fav-btn {
     margin-top: 8px;
-    box-shadow:inset 0px 1px 0px 0px #bee2f9;
-    background:linear-gradient(to bottom, #63b8ee 5%, #468ccf 100%);
-    background-color:#63b8ee;
-    border-radius:6px;
-    border:1px solid #3866a3;
-    display:inline-block;
-    cursor:pointer;
-    color:#14396a;
-    font-family:Arial;
-    font-size:15px;
-    font-weight:bold;
-    padding:6px 24px;
-    text-decoration:none;
-    text-shadow:0px 1px 0px #7cacde;
+    box-shadow: inset 0px 1px 0px 0px #bee2f9;
+    background: linear-gradient(to bottom, #63b8ee 5%, #468ccf 100%);
+    background-color: #63b8ee;
+    border-radius: 6px;
+    border: 1px solid #3866a3;
+    display: inline-block;
+    cursor: pointer;
+    color: #14396a;
+    font-family: Arial;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 6px 24px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #7cacde;
   }
   .fav-btn:hover {
-    background:linear-gradient(to bottom, #468ccf 5%, #63b8ee 100%);
-    background-color:#468ccf;
+    background: linear-gradient(to bottom, #468ccf 5%, #63b8ee 100%);
+    background-color: #468ccf;
   }
   .fav-btn:active {
-
-    position:relative;
-    top:1px;
+    position: relative;
+    top: 1px;
   }
-    .like-img{
-      width: 25px;
-      margin-right: 10px;
-      margin-top: 10px;
+  .like-img {
+    width: 25px;
+    margin-right: 10px;
+    margin-top: 10px;
   }
-  .like-container{
+  .like-container {
     display: flex;
   }
-
 }
+
