@@ -1,5 +1,4 @@
 $(() => {
-
   const createItemElement = (item, isAdmin, itemsArray) => {
     let $item = `
     <li class="list-group-item d-flex border border-secondary">
@@ -12,7 +11,7 @@ $(() => {
           <div class = "d-flex flex-column justify-content-around" style="width: 70%;">
           <h5 class="title"> ${item.description} ... </h5>
         <div class="test border border-secondary mt-5 pb-2">
-        `
+        `;
     if (!isAdmin) {
       if (itemsArray.includes(item.id)) {
         $item += `
@@ -21,7 +20,7 @@ $(() => {
               Favourite
             </button>
           </div>
-        `
+        `;
       } else {
         $item += `
         <div class="fav">
@@ -29,7 +28,7 @@ $(() => {
             Favourite
           </button>
         </div>
-        `
+        `;
       }
     }
     $item += `
@@ -40,7 +39,7 @@ $(() => {
               <h6 class = "mt-3">Likes: ${item.number_of_likes}</h6>
               </div>
             </div>
-              `
+              `;
     if (isAdmin) {
       $item += `
       <div class = "d-flex flex-column justify-content-space">
@@ -57,11 +56,11 @@ $(() => {
         </form>
       </div>
     </div>
-    `
+    `;
     }
     $item += `
 </li>
-    `
+    `;
     $(".list-group").append($item);
 
   };
@@ -71,6 +70,7 @@ $(() => {
     const dateNow = new Date().getTime();
     const time = Math.abs(dateNow - datePosted);
     let sum;
+    let unit;
     if (time < 1000 * 60) {
       sum = Math.floor(time / (1000));
       unit = "S";
@@ -90,43 +90,39 @@ $(() => {
 
   const renderItems = (itemData, isAdmin, itemArray) => {
     for (const item of itemData) {
-      createItemElement(item, isAdmin, itemArray)
+      createItemElement(item, isAdmin, itemArray);
     }
   };
 
-  const loadItems = function () {
-
+  const loadItems = function() {
     $.ajax({
       method: "GET",
       url: "/myFav/favs"
     })
-      .then(function (data) {
+      .then(function(data) {
         $(".list-group").empty();
         renderItems(data.items, data.isAdmin, data.itemsArray);
 
-        $('.fav-btn').click(function (event) {
-          const data = {itemId: event.target.dataset.id}
+        $('.fav-btn').click(function(event) {
+          const data = {itemId: event.target.dataset.id};
           console.log(data);
           $.ajax({
             method: "POST",
             url: "/items/ajaxFavs",
             data
           })
-          .then(function (data) {
-            loadItems();
+            .then(function(data) {
+              loadItems();
 
-          })
-          .catch(function (error) {
-            console.log("Submit error", error);
-          });
+            })
+            .catch(function(error) {
+              console.log("Submit error", error);
+            });
         });
       })
-
-      .catch(function (error) {
-
+      .catch(function(error) {
         console.log("Load Tweets error", error);
       });
   };
-
   loadItems();
 });

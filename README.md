@@ -1,16 +1,7 @@
-LHL Node Skeleton
+BUy & Sell Website
 =========
 
 ## Project Setup
-
-The following steps are only for _one_ of the group members to perform.
-
-1. Create your own copy of this repo using the `Use This Template` button, ideally using the name of your project. The repo should be marked Public
-2. Verify that the skeleton code now shows up in your repo on GitHub, you should be automatically redirected
-3. Clone your copy of the repo to your dev machine
-4. Add your team members as collaborators to the project so that they can push to this repo
-5. Let your team members know the repo URL so that they use the same repo (they should _not_ create a copy/fork of this repo since that will add additional workflow complexity to the project)
-
 
 ## Getting Started
 
@@ -38,6 +29,141 @@ The following steps are only for _one_ of the group members to perform.
 
 ## Dependencies
 
-- Node 10.x or above
-- NPM 5.x or above
-- PG 6.x
+  - body-parser: ^1.19.0,
+  - chalk: ^2.4.2,
+  - cookie-session: ^1.4.0,
+  - dotenv: ^2.0.0,
+  - ejs: ^2.6.2,
+  - express: ^4.17.1,
+  - moment: ^2.29.1,
+  - morgan: ^1.9.1,
+  - node-sass-middleware: ^0.11.0,
+  - pg: ^6.4.2,
+  - pg-native: ^3.0.0,
+  - twilio: ^3.52.0
+
+# About the App
+# Buy / Sell
+
+An app where you can put different types of things up for sale. You can pick a specific niche of items to sell for the app (a cars site, a shoes site, etc). This lets buyers find the items they are looking for quickly, and easily contact the seller.
+
+Requirements:
+users can see featured items on a main feed
+users can filter items by price,
+users can favourite items to check up on them later
+users can send messages to the seller
+
+Admins can:
+post items, which can be seen by others
+remove items from the site
+mark items as SOLD!,
+send a message via app, or text back on negotiations in buying the said item
+
+Story:
+1. As a user, I can browse thru the list of items
+2. As a user, I can search specific items on:
+   1. Price
+      1. Min
+      2. Max
+      3. High to Low
+      4. Low to High
+   2. Date listed - stretch
+3. As a user I can create a favourites list
+4. As a user I can send messages to the seller
+
+
+5. As an Admin - I can add to the list of items (create items)
+6. As an admin - I can remove items (Update as Delete and don't show in main list)
+7. As an Admin - I can mark items as SOLD (update and don't show in main list)
+8. As an Admin - 
+   1. I can message to seller/buyer
+   2. I can text back seller/buyer(SMS)
+        on negotiations to purchase the item. stretch
+9. As an Admin - I can view all messages:
+   1.  of all buyers
+   3.  on all items
+
+
+Entities - TABLES
+1. Users - seller and buyer both
+   1. id PK
+   2. name
+   3. email
+   4. phone
+   5. is_admin?
+   
+2. User/Favourites
+   1. id PK
+   2. user_id references user(id)
+   3. item_id references items(id)
+  
+3. Items - Electronics
+   1. id PK
+   2. title
+   3. description
+   4. thumbnail_photo_url
+   6. date_listed
+   8. price
+   9. number_of_likes
+   10. Sold? Y/N
+   11. sold_to (not FK, but will be populated when marked SOLD)
+   12. sold_date
+   13. Deleted? Y/N
+   14. Delete_Reason
+
+4.  Conversations - buyer, seller & admin
+   15. id PK
+   16. from_id References user(id)
+   17. to_id References user(id)
+   18. item_id
+   19. message_date
+   20. message
+
+Types of Users - Admin(seller) / User (Buyer)
+
+## Buyer Logs in:
+1. Main Page
+   1. Header / Menu Bar - My Favourites, Conversations, Items List, User Information (Welcome User!, Today's date), Logout
+   2. 3 Featured - most liked / random
+      1. No scrolling of items
+
+2. Login / Sign-up / logout - Dead Link. All users for Demo purposes will directly use the route
+
+3. My Favourites
+   2. List of all items clicked as favourite - use the Items List (#5) to show only the buyer's favourites.
+   3. Should not display SOLD items
+      1. should not allow user to message seller for such sold items
+   4. Allow buyer to message the seller
+
+4. Conversations
+   1. list of all items where buyer has already messaged the seller
+      2. allow buyer to continue message to seller
+      3. Should not allow any more messaging if items is SOLD / DELETED.
+
+5. Items List
+   1. Filter on price
+   2. Scroll thru items
+   3. select item 
+      1. Open Item specific page (#6)
+      2. mark / unmark as favourite
+   4. Should not allow any activity if items is SOLD / DELETED.
+
+6. Specific Items from the Items List
+   1. Message Seller
+      1. re-route to conversation/id page (#4.2)
+
+
+## Admin / Seller Logs in: (seller can also be a buyer)
+1. Main Page
+   1. Header / Menu Bar - Home, Create Listing, Items, Conversations
+   2. 3 Featured - most liked / random
+      1. No scrolling of items
+
+2. Login / Sign-up / logout - Dead Link. All users for Demo purposes will directly use the route
+
+3. Create Listing (Add)
+   1. Add a item for sale - opens a new page. ON addition, return back to #3.2
+
+4. Conversations
+   1. list of all conversations by buyers who have already messaged the seller
+      2. allow admin to continue message to buyer

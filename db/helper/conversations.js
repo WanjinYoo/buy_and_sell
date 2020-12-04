@@ -1,4 +1,5 @@
 /** Global Declarations */
+/** This file contains all database queries for the conversations table */
 
 let  queryString = '';
 let queryParams = [];
@@ -8,6 +9,7 @@ const initQueryVars = (queryString, queryParams) => {
   queryParams = [];
 };
 
+/** Get all converstaions ordered by Buyer, Item and Message date. This data is listed out on the conversations page. */
 const getAllConversationsByUser = (db, userId, isAdmin) => {
   initQueryVars(queryString, queryParams);
   queryString = `
@@ -25,11 +27,12 @@ const getAllConversationsByUser = (db, userId, isAdmin) => {
   } else {
     queryParams = [];
   }
-  queryString += `ORDER BY a.item_id, a.message_date;`;
+  queryString += `ORDER BY a.buyer_id, a.item_id, a.message_date;`;
   return db.query(queryString, queryParams);
 };
 
-const addMsgFromBuyer = (db, messageObject) => {
+/** This adds to the conversations table for all messages between buyer & seller */
+const addToConversations = (db, messageObject) => {
   initQueryVars(queryString, queryParams);
   queryParams = [
     messageObject.userId,
@@ -45,5 +48,5 @@ const addMsgFromBuyer = (db, messageObject) => {
 
 module.exports = {
   getAllConversationsByUser,
-  addMsgFromBuyer,
+  addToConversations,
 };

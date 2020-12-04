@@ -1,6 +1,6 @@
 /*
  * All routes for Users are defined here
- * Since this file is loaded in server.js into api/users,
+ * Since this file is loaded in server.js into /users,
  *   these routes are mounted onto /users
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
@@ -30,7 +30,6 @@ module.exports = (db) => {
   
   router.get("/main", (req, res) => {
     const userId = req.session[`userId`];
-
     userHelpers.getUserById(db,userId)
       .then(data => {
         let userName = '';
@@ -65,7 +64,5 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
-
-
   return router;
 };

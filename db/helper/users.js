@@ -1,3 +1,5 @@
+
+/** Global Declarations */
 let  queryString = '';
 let queryParams = [];
 

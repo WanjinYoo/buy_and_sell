@@ -5,7 +5,7 @@
 -- -----------------------------------------------------
 -- Schema midterm
 -- -----------------------------------------------------
--- CREATE DATABASE IF NOT EXISTS midterm DEFAULT CHARACTER SET utf8;
+CREATE DATABASE IF NOT EXISTS midterm DEFAULT CHARACTER SET utf8;
 --
 \c midterm
 --
@@ -13,7 +13,11 @@ DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS items CASCADE;
 DROP TABLE IF EXISTS user_favourites CASCADE;
 DROP TABLE IF EXISTS conversations CASCADE;
---
+-- 
+-- -----------------------------------------------------
+-- Table users
+-- -----------------------------------------------------
+-- 
 CREATE TABLE users (
   id SERIAL PRIMARY KEY NOT NULL,
   name VARCHAR(255) NOT NULL,
@@ -22,6 +26,9 @@ CREATE TABLE users (
   is_admin BOOLEAN NOT NULL DEFAULT 'N'
 );
 --
+-- -----------------------------------------------------
+-- Table items
+-- -----------------------------------------------------
 CREATE TABLE items (
   id SERIAL PRIMARY KEY NOT NULL,
   title VARCHAR(255) NOT NULL,
@@ -37,14 +44,21 @@ CREATE TABLE items (
   deleted_date DATE DEFAULT NULL,
   deleted_reason VARCHAR(255) DEFAULT NULL
 );
---
-
+-- 
+-- -----------------------------------------------------
+-- Table user_favourites
+-- -----------------------------------------------------
+-- 
 CREATE TABLE user_favourites (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   item_id INTEGER REFERENCES items(id) ON DELETE CASCADE
 );
---
+-- 
+-- -----------------------------------------------------
+-- Table conversations
+-- -----------------------------------------------------
+-- 
 CREATE TABLE conversations (
   id SERIAL PRIMARY KEY NOT NULL,
   from_id INTEGER REFERENCES users(id) ON DELETE CASCADE,

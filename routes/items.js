@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const msgHelpers = require('../db/helper/conversations.js');
 const userHelpers = require('../db/helper/users.js');
 const itemHelpers = require('../db/helper/items.js');
 const userFavHelpers = require('../db/helper/userFavourites.js');
@@ -11,23 +10,22 @@ module.exports = (db) => {
     const userId = req.session['userId'];
     userHelpers.getUserById(db, userId)
       .then(data => {
-        const userName = data.rows[0].name
-        const isAdmin =  data.rows[0].is_admin
-        templateVars = {userName, isAdmin}
-    res.render("items", templateVars)
-      })
+        const userName = data.rows[0].name;
+        const isAdmin =  data.rows[0].is_admin;
+        const templateVars = {userName, isAdmin};
+        res.render("items", templateVars);
+      });
   });
 
   router.get("/data", (req, res) => {
     const userId = req.session['userId'];
     userHelpers.getUserById(db, userId)
       .then(data => {
-        const userName = data.rows[0].name
-        const isAdmin =  data.rows[0].is_admin
+        const userName = data.rows[0].name;
+        const isAdmin =  data.rows[0].is_admin;
         itemHelpers.fetchItems(db)
           .then(data => {
             let items = [];
-            console.log(req.query, "****************************************");
             if (req.query.sort === 'price-asc') {
               items = data.rows.sort(function(a, b) {
                 return a.price - b.price;
@@ -45,10 +43,8 @@ module.exports = (db) => {
                 return a.date_listed - b.date_listed;
               });
             } else {
-
               items = data.rows;
             }
-
             userFavHelpers.getAllUserFavouritesById(db, userId)
               .then(data => {
                 let itemsArray = data.rows.map(function(obj) {
@@ -73,19 +69,6 @@ module.exports = (db) => {
 
   });
 
-  // router.post("/ajaxFavs", (req, res) => {
-  //   const userId = req.session['userId'];
-  //   userFavHelpers.hasLiked(db, userId, req.body.itemId)
-  //   .then(data => {
-  //     if (data.rows.lenght === 0) {
-
-  //     }
-  //     const newData = JSON.stringify(data.rows)
-  //     res.send(newData)
-  //   })
-
-  // });
-
   router.post("/ajaxFavs", (req, res) => {
     const userId = req.session['userId'];
     const itemId = req.body.itemId;
@@ -109,7 +92,7 @@ module.exports = (db) => {
                 });
             });
         }
-        res.send("WHAT TO SEND BACK OR DO I EVEN NEED TOO?")
+        res.send("WHAT TO SEND BACK OR DO I EVEN NEED TOO?");
       });
 
   });
@@ -177,7 +160,6 @@ module.exports = (db) => {
       });
   });
 
-
   router.get("/createlisting", (req, res) => {
     const missing = false;
     const userId = req.session[`userId`];
@@ -201,14 +183,9 @@ module.exports = (db) => {
       .then(data => {
         const isAdmin = data.rows[0].is_admin;
         const userName = data.rows[0].name;
-        db.query(`SELECT * FROM items
-      WHERE id = ${req.params.id}
-
-      ;`)
+        itemHelpers.getItemsById(db, userId)
           .then(data => {
-
             const items = data.rows;
-
             const templateVars = {
               items,
               userName,
@@ -226,17 +203,17 @@ module.exports = (db) => {
   });
 
   router.post("/created", (req, res) => {
-    const bod = req.body
-    const title = bod.title.length
-    const price = bod.price.length
-    const url = bod.url.length
-    const desc = bod.description.length
-    const content = [title,price,url,desc]
+    const bod = req.body;
+    const title = bod.title.length;
+    const price = bod.price.length;
+    const url = bod.url.length;
+    const desc = bod.description.length;
+    const content = [title,price,url,desc];
 
     // Checks to see if the length of ANY input is 0 then stops and redirects the page
     for (const len of content) {
       if (len === 0) {
-        return res.redirect("/items/createlisting")
+        return res.redirect("/items/createlisting");
       }
     }
 
@@ -266,7 +243,5 @@ module.exports = (db) => {
         res.redirect('/items');
       });
   });
-
-
   return router;
 };

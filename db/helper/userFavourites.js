@@ -1,6 +1,10 @@
+/** All queries related to the user_favourites table */
+
+/** Global Declarations */
 let queryString = '';
 let queryParams = [];
 
+/** Add item marked as favourite */
 const addToFavourites = (db, userId, itemId) => {
   queryParams = [
     userId,
@@ -14,6 +18,7 @@ const addToFavourites = (db, userId, itemId) => {
   return db.query(queryString, queryParams);
 };
 
+/** Get all user_favourites data */
 const getAllUserFavourites = (db) => {
   queryString = `
   SELECT * 
@@ -22,6 +27,7 @@ const getAllUserFavourites = (db) => {
   return db.query(queryString);
 };
 
+/** get user_favourites data by id. Used for toggling button colour on the items page. */
 const getAllUserFavouritesById = (db, userId) => {
   queryParams = [
     userId,
@@ -35,6 +41,7 @@ const getAllUserFavouritesById = (db, userId) => {
   return db.query(queryString, queryParams);
 };
 
+/** used on the items page  */
 const fetchTotalFavourites = (db, itemId) => {
   queryParams = [
     itemId
@@ -49,6 +56,7 @@ const fetchTotalFavourites = (db, itemId) => {
   return db.query(queryString, queryParams);
 };
 
+/** Deleting from favourites when un-favourited. */
 const deleteFavourites = (db, userId, itemId) => {
   queryParams = [
     userId,
@@ -77,7 +85,6 @@ const hasLiked = (db, userId, itemId) => {
   
   return db.query(queryString, queryParams);
 };
-
 
 module.exports = {
   hasLiked,

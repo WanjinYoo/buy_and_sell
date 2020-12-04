@@ -3,8 +3,8 @@ VALUES ('Stephan', 'admin@admin.com', '1234567890', 'Y');
 
 INSERT INTO users (name, email, phone)
 VALUES  ('Rahul', 'rahul.shial@gmail.com', '+15878892503'),
-  ('Wanjin', 'wanjin@yoo.com', '+12502179995'),
-  ('Dominic Parks','victoriablackwell@outlookcom', '+19514091382'),
+  ('Wanjin', 'wanjin@yoo.com', '+15878892503'),
+  ('Dominic Parks','victoriablackwell@outlookcom', '+15878892503'),
   ('Eva Stanley','sebastianguerra@ymailcom', '1234567890'),
   ('Louisa Meyer','jacksonrose@hotmailcom', '1234567890'),
   ('Sue Luna','jasonvincent@gmxcom', '1234567890'),

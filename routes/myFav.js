@@ -37,8 +37,6 @@ module.exports = (db) => {
       });
   });
 
-
-
   router.get("/favs", (req, res) => {
     const userId = req.session[`userId`];
     userHelpers.getUserById(db,userId)
@@ -69,6 +67,5 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
-
   return router;
 };
