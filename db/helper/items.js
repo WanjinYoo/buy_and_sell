@@ -3,10 +3,10 @@ let queryParams = [];
 
 const fetchItems = (db) =>{
   queryString = `
-  SELECT * 
-  FROM items 
+  SELECT *
+  FROM items
   ORDER BY id DESC;`;
-  
+
   return db.query(queryString);
 };
 const minMaxFilter = (db, min, max) =>{
@@ -15,7 +15,7 @@ const minMaxFilter = (db, min, max) =>{
     max
   ];
   queryString = `
-  SELECT * 
+  SELECT *
   FROM items
   WHERE price <= $2 AND price >= $1;`;
 
@@ -92,7 +92,7 @@ const getUserFavouriteItems = (db,userId) => {
   AND items.sold = 'N'
   AND items.deleted = 'N'
   ORDER BY items.id;`;
-  
+
   return db.query(queryString, queryParams);
 };
 

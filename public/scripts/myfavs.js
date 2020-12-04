@@ -1,6 +1,5 @@
 $(() => {
 
-
   const createItemElement = (item, isAdmin, itemsArray) => {
     let $item = `
     <li class="list-group-item d-flex border border-secondary">
@@ -36,10 +35,7 @@ $(() => {
     $item += `
               <h6 class = "mt-3"> ${getDate(item.date_listed)}</h6>
               <h6 class = "mt-3">Price: $${item.price}</h6>
-              <div class="like-container">
-              <img class="like-img" style="width: 25px;" src="https://www.flaticon.com/svg/static/icons/svg/1029/1029132.svg" alt="">
               <h6 class = "mt-3">Likes: ${item.number_of_likes}</h6>
-              </div>
             </div>
               `
     if (isAdmin) {
@@ -64,6 +60,7 @@ $(() => {
 </li>
     `
     $(".list-group").append($item);
+
   };
 
 
@@ -88,57 +85,46 @@ $(() => {
     return `${sum} ${unit}`;
   };
 
+
   const renderItems = (itemData, isAdmin, itemArray) => {
     for (const item of itemData) {
       createItemElement(item, isAdmin, itemArray)
     }
   };
 
-  $('#price-filter').submit(function (event) {
-    event.preventDefault()
-    $.ajax({
-      method: "POST",
-      url: "/items/priceFilter",
-      data: $(this).serialize()
-    })
-    .then(function (data) {
-      $(".list-group").empty();
-      renderItems(data.items, data.isAdmin, data.itemsArray);
-    })
-  });
-
-  $('.list-group').on("click", ".fav-btn", function (event) {
-    const data = {itemId: event.target.dataset.id}
-    console.log(data);
-    $.ajax({
-      method: "POST",
-      url: "/items/ajaxFavs",
-      data
-    })
-    .then(function (data) {
-      loadItems();
-    })
-    .catch(function (error) {
-      console.log("Submit error", error);
-    })
-  });
-
   const loadItems = function () {
-    const urlParams = new URLSearchParams(window.location.search)
 
     $.ajax({
       method: "GET",
-      url: "/items/data",
-      data: {sort: urlParams.get("sort")}
+      url: "/myFav/favs"
     })
       .then(function (data) {
         $(".list-group").empty();
         renderItems(data.items, data.isAdmin, data.itemsArray);
-        })
+
+        $('.fav-btn').click(function (event) {
+          const data = {itemId: event.target.dataset.id}
+          console.log(data);
+          $.ajax({
+            method: "POST",
+            url: "/items/ajaxFavs",
+            data
+          })
+          .then(function (data) {
+            loadItems();
+
+          })
+          .catch(function (error) {
+            console.log("Submit error", error);
+          });
+        });
+      })
+
       .catch(function (error) {
+
         console.log("Load Tweets error", error);
       });
-  }
+  };
+
   loadItems();
 });
-

@@ -8,7 +8,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Listings</title>
+  <title>Favourites</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="">
@@ -29,7 +29,7 @@
 
   <!-- Local Js Files -->
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-  <script type="text/javascript" src="/public/scripts/items.js"></script>
+  <script type="text/javascript" src="/public/scripts/myfavs.js"></script>
 
 </head>
 
@@ -46,8 +46,7 @@
   <a href="?sort=price-desc">Price - High-Low</a>
   <a href="?sort=date-new">Date - Newest First</a>
   <a href="?sort=date-old">Date - Oldest First</a>
-
-  <form class="d-flex mt-2" id="price-filter">
+  <form class="d-flex mt-2" action="/items/priceFilter" method="POST">
     <label for="min">
       <input type="text" name="min" placeholder="MIN Price">
     </label>
@@ -59,8 +58,6 @@
     </button>
   </form>
   </div>
-
-
   <ul class="list-group">
 
 
