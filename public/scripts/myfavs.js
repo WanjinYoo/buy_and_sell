@@ -63,7 +63,6 @@ $(() => {
 
   };
 
-
   const getDate = milliseconds => {
     const datePosted = new Date(milliseconds);
     const dateNow = new Date().getTime();

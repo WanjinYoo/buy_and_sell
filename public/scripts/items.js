@@ -1,11 +1,9 @@
 $(() => {
-
-
   const createItemElement = (item, isAdmin, itemsArray) => {
     let $item = `
     <li class="list-group-item d-flex border border-secondary">
           <div style="width: 23%;">
-          <img class="ml-3" style="width: 50%; object-fit: fit;" src="${item.thumbnail_photo_url}">
+          <img class="ml-3" style="width: 50%; object-fit: fill;" src="${item.thumbnail_photo_url}">
           <a href='/items/${item.id}'>
             <h6 class= "mr-5 text-center"> ${item.title} </h6>
           </a>
@@ -94,6 +92,13 @@ $(() => {
     }
   };
 
+
+
+
+
+
+
+
   $('#price-filter').submit(function (event) {
     event.preventDefault()
     $.ajax({
@@ -124,8 +129,7 @@ $(() => {
   });
 
   const loadItems = function () {
-    const urlParams = new URLSearchParams(window.location.search)
-
+    const urlParams = new URLSearchParams(window.location.search);
     $.ajax({
       method: "GET",
       url: "/items/data",

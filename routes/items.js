@@ -251,6 +251,7 @@ module.exports = (db) => {
 
 
   router.post("/:id/delete", (req, res) => {
+    console.log();
     itemHelpers.deleteItem(db, req.params.id)
       .then(data => {
         console.log('DELTED THIS ITEM');

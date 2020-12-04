@@ -5,6 +5,7 @@ const fetchItems = (db) =>{
   queryString = `
   SELECT *
   FROM items
+  WHERE sold = 'N' AND deleted = 'N'
   ORDER BY id DESC;`;
 
   return db.query(queryString);
