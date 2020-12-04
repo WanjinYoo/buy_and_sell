@@ -25,6 +25,10 @@
 
   <!-- Local Js Files -->
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <!-- External Js Files -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -32,39 +36,28 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
     <%- include('header') %>
-    <form class="message-form" action="/items/created", method="POST">
-      <label for="title">
-        <h5>Title</h5>
-        <input class="form-control" minlength= "10"type="text" name="title" placeholder="title">
-      </label>
-      <br>
-      <label for="price">
-        <h5>Price</h5>
-        <input class="form-control" type="number" min="1" step="any" name="price" placeholder="Price">
-      </label>
-      <br>
-      <label for="url">
-        <h5>URL</h5>
-        <input class="form-control" type="url" maxlength="254"  name="url" placeholder="URL">
-      </label>
-      <br>
-      <label for="description">
-        <h5>Description</h5>
-        <textarea class="form-control" name="description" id="" cols="30" rows="5"></textarea>
-      </label>
 
+<div class="col d-flex justify-content-center">
+  <div class="card row -center" style="width : 48%;">
+  <form class="text-center border border-light p-5" action="/items/created", method="POST">
+    <p class="h4 mb-4">CreateListings</p>
+    <!-- Title -->
+    <label for="title"> <h5>Title </h5></label>
+    <input class="form-control mb-3" minlength= "10"type="text" name="title" placeholder="Title">
+    <!-- Price -->
+    <label for="price"> <h5>Price</h5> </label>
+    <input class="form-control mb-3" type="number" min="1" step="any" name="price" placeholder="Price">
+    <!-- URL -->
+    <label for="url"><h5>URL</h5></label>
+    <input class="form-control mb-3" type="url" maxlength="254"  name="url" placeholder="URL">
+    <!-- description -->
+    <label for="description"><h5>Description</h5> </label>
+    <textarea class="form-control" name="description" id="" cols="30" rows="5"></textarea>
+    <!-- submit -->
+    <button class="btn btn-secondary my-4 pt-3 pb-3 btn-block" type="submit">Submit</button>
+  </form>
+  </div>
+  </div>
+  </body>
+  </html>
 
-
-
-
-
-      <div>
-        <div>
-          <button type="submit">Submit</button>
-        </div>
-      </div>
-    </form>
-
-
-</body>
-</html>
