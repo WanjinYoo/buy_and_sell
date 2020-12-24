@@ -5,9 +5,9 @@
 -- -----------------------------------------------------
 -- Schema midterm
 -- -----------------------------------------------------
-CREATE DATABASE IF NOT EXISTS midterm DEFAULT CHARACTER SET utf8;
+-- CREATE DATABASE IF NOT EXISTS midterm DEFAULT CHARACTER SET utf8;
 --
-\c midterm
+-- \c midterm
 --
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS items CASCADE;
