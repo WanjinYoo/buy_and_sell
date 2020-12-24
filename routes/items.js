@@ -3,7 +3,7 @@ const router = express.Router();
 const userHelpers = require('../db/helper/users.js');
 const itemHelpers = require('../db/helper/items.js');
 const userFavHelpers = require('../db/helper/userFavourites.js');
-const { restart } = require('nodemon');
+// const { restart } = require('nodemon');
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
